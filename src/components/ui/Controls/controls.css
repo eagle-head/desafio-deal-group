@@ -19,11 +19,7 @@
 }
 
 .controls__button--primary {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--secondary-color)
-  );
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: white;
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
   transform: translateY(0);

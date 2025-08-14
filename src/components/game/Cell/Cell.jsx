@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './cell.css';
 
-const Cell = ({ value, index, onClick, isWinner, disabled, currentPlayer }) => {
+function Cell({ value, index, onClick, isWinner, disabled, currentPlayer }) {
   const [hover, setHover] = useState(false);
 
-  const getCellClasses = () => {
+  const getCellClasses = function () {
     const classes = ['cell'];
 
     if (value === 'X') classes.push('cell--x');
@@ -19,7 +19,7 @@ const Cell = ({ value, index, onClick, isWinner, disabled, currentPlayer }) => {
     return classes.join(' ');
   };
 
-  const getPreviewClasses = () => {
+  const getPreviewClasses = function () {
     const classes = ['cell__preview'];
     if (currentPlayer === 'X') classes.push('cell__preview--x');
     else if (currentPlayer === 'O') classes.push('cell__preview--o');
@@ -29,9 +29,15 @@ const Cell = ({ value, index, onClick, isWinner, disabled, currentPlayer }) => {
   return (
     <div
       className={getCellClasses()}
-      onClick={() => !disabled && !value && onClick(index)}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      onClick={function () {
+        !disabled && !value && onClick(index);
+      }}
+      onMouseEnter={function () {
+        setHover(true);
+      }}
+      onMouseLeave={function () {
+        setHover(false);
+      }}
     >
       {value ? (
         value
@@ -40,6 +46,6 @@ const Cell = ({ value, index, onClick, isWinner, disabled, currentPlayer }) => {
       ) : null}
     </div>
   );
-};
+}
 
 export default Cell;

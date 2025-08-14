@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 
 // Hooks
 import { useGame, useTimer, useTheme } from './hooks';
@@ -19,44 +19,47 @@ import {
 import { DEFAULT_TIMER_DURATION, getNextPlayer } from './utils';
 
 // Main App Component
-const App = () => {
+function App() {
   const game = useGame();
   const { theme, updateTheme } = useTheme();
 
-  const handleTimeout = useCallback(() => {
-    if (game.gameStatus === 'playing') {
-      game.setCurrentPlayer(getNextPlayer(game.currentPlayer));
-    }
-  }, [game.currentPlayer, game.gameStatus, game.setCurrentPlayer]);
+  const handleTimeout = useCallback(
+    function () {
+      if (game.gameStatus === 'playing') {
+        game.setCurrentPlayer(getNextPlayer(game.currentPlayer));
+      }
+    },
+    [game]
+  );
 
   const timer = useTimer(DEFAULT_TIMER_DURATION, handleTimeout);
 
-  const handleCellClick = index => {
+  const handleCellClick = function (index) {
     if (game.makeMove(index)) {
       timer.resetTimer();
     }
   };
 
-  const handleNewGame = () => {
+  const handleNewGame = function () {
     game.resetGame();
     timer.resetTimer();
   };
 
-  useEffect(() => {
-    if (game.gameStatus !== 'playing') {
-      timer.pauseTimer();
-    }
-  }, [game.gameStatus, timer.pauseTimer]);
+  useEffect(
+    function () {
+      if (game.gameStatus !== 'playing') {
+        timer.pauseTimer();
+      }
+    },
+    [game.gameStatus, timer.pauseTimer]
+  );
 
   return (
     <div className='container'>
       <Header />
       <ScoreBoard scores={game.scores} />
       <Timer timeLeft={timer.timeLeft} percentage={timer.percentage} />
-      <StatusMessage
-        gameStatus={game.gameStatus}
-        winner={getNextPlayer(game.currentPlayer)}
-      />
+      <StatusMessage gameStatus={game.gameStatus} winner={getNextPlayer(game.currentPlayer)} />
       <div>
         <CurrentPlayer player={game.currentPlayer} />
         <GameBoard
@@ -71,6 +74,6 @@ const App = () => {
       <ColorCustomizer theme={theme} onThemeChange={updateTheme} />
     </div>
   );
-};
+}
 
 export default App;

@@ -1,8 +1,7 @@
-import React from 'react';
 import './timer.css';
 
-const Timer = ({ timeLeft, percentage }) => {
-  const getProgressClass = () => {
+function Timer({ timeLeft, percentage }) {
+  const getProgressClass = function () {
     if (timeLeft <= 2) return 'danger';
     if (timeLeft <= 3) return 'warning';
     return '';
@@ -15,13 +14,10 @@ const Timer = ({ timeLeft, percentage }) => {
         <span className='timer-value'>{timeLeft}s</span>
       </div>
       <div className='timer-bar'>
-        <div
-          className={`timer-progress ${getProgressClass()}`}
-          style={{ width: `${percentage}%` }}
-        ></div>
+        <div className={`timer-progress ${getProgressClass()}`} style={{ width: `${percentage}%` }}></div>
       </div>
     </div>
   );
-};
+}
 
 export default Timer;

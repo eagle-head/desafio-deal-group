@@ -1,8 +1,7 @@
-import React from 'react';
 import './color-swatch.css';
 
-const ColorSwatch = ({ color, type, value, isActive, onClick }) => {
-  const getSwatchClasses = () => {
+function ColorSwatch({ color, type, value, isActive, onClick }) {
+  const getSwatchClasses = function () {
     const classes = ['color-swatch'];
     if (isActive) classes.push('active');
     return classes.join(' ');
@@ -12,9 +11,11 @@ const ColorSwatch = ({ color, type, value, isActive, onClick }) => {
     <div
       className={getSwatchClasses()}
       style={{ background: color }}
-      onClick={() => onClick(type, value)}
+      onClick={function () {
+        onClick(type, value);
+      }}
     />
   );
-};
+}
 
 export default ColorSwatch;

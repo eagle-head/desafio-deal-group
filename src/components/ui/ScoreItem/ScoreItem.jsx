@@ -1,8 +1,7 @@
-import React from 'react';
 import './score-item.css';
 
-const ScoreItem = ({ label, value, player }) => {
-  const getItemClasses = () => {
+function ScoreItem({ label, value, player }) {
+  const getItemClasses = function () {
     const classes = ['score-item'];
     if (player) classes.push(`player-${player.toLowerCase()}`);
     return classes.join(' ');
@@ -14,6 +13,6 @@ const ScoreItem = ({ label, value, player }) => {
       <div className='score-item__value'>{value}</div>
     </div>
   );
-};
+}
 
 export default ScoreItem;

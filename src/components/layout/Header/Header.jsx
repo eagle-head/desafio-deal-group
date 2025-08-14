@@ -1,13 +1,9 @@
-import React from 'react';
-import './header.css';
+import styles from './Header.module.css';
 
-const Header = () => {
+export default function Header() {
   return (
-    <header className='header'>
-      <h1 className='header__title'>Jogo da Velha</h1>
-      <p className='header__subtitle'>Desafio técnico - Front-End React</p>
+    <header className={styles.header}>
+      <h1 className={styles.title}>Tic Tac Toe</h1>
     </header>
   );
-};
-
-export default Header;
+}

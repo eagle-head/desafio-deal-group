@@ -1,8 +1,7 @@
-import React from 'react';
 import ScoreItem from '../ScoreItem/ScoreItem';
 import './score-board.css';
 
-const ScoreBoard = ({ scores }) => {
+function ScoreBoard({ scores }) {
   return (
     <div className='score-board'>
       <div className='score-board-title'>Placar Acumulado</div>
@@ -13,6 +12,6 @@ const ScoreBoard = ({ scores }) => {
       </div>
     </div>
   );
-};
+}
 
 export default ScoreBoard;

@@ -1,16 +1,6 @@
 import { useState } from 'react';
-import {
-  checkWinner,
-  isValidMove,
-  makeMove as makeMoveOnBoard,
-  getNextPlayer,
-} from '../utils/gameLogic';
-import {
-  INITIAL_BOARD,
-  INITIAL_SCORES,
-  PLAYERS,
-  GAME_STATUS,
-} from '../utils/constants';
+import { checkWinner, isValidMove, makeMove as makeMoveOnBoard, getNextPlayer } from '../utils/gameLogic';
+import { INITIAL_BOARD, INITIAL_SCORES, PLAYERS, GAME_STATUS } from '../utils/constants';
 
 const useGame = () => {
   const [board, setBoard] = useState(INITIAL_BOARD);
