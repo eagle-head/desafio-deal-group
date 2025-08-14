@@ -1,0 +1,19 @@
+.current-player {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem;
+  background: var(--background);
+  border-radius: 0.75rem;
+}
+
+.current-player__label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.current-player__player {
+  font-size: 1.125rem;
+  color: var(--primary-color);
+  margin-left: 0.5rem;
+  font-weight: 700;
+}

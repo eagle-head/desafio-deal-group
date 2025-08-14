@@ -1,0 +1,77 @@
+.cell {
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  width: 100%;
+  height: 100%;
+  transform: scale(1);
+  box-shadow: none;
+}
+
+.cell:not(.cell--disabled):not(.cell--filled) {
+  cursor: pointer;
+}
+
+.cell--disabled,
+.cell--filled {
+  cursor: default;
+}
+
+.cell--hover:not(.cell--filled):not(.cell--disabled) {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.cell--winner {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.1),
+    rgba(16, 185, 129, 0.2)
+  ) !important;
+  border-color: var(--success) !important;
+  animation: winnerPulse 0.6s ease-out;
+}
+
+.cell--x {
+  background: rgba(37, 99, 235, 0.05);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  animation: popIn 0.3s ease-out;
+}
+
+.cell--o {
+  background: rgba(96, 165, 250, 0.05);
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  animation: popIn 0.3s ease-out;
+}
+
+.cell--empty {
+  background: var(--background);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.cell--empty.cell--hover {
+  background: var(--surface);
+  border-color: var(--primary-color);
+}
+
+.cell__preview {
+  opacity: 0.7;
+}
+
+.cell__preview--x {
+  color: var(--primary-color);
+}
+
+.cell__preview--o {
+  color: var(--accent-color);
+}

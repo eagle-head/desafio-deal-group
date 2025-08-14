@@ -1,0 +1,15 @@
+.status-message {
+  color: white;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+  animation: slideDown 0.5s ease-out;
+  background: linear-gradient(135deg, var(--success), #34d399);
+}
+
+.status-message.draw {
+  background: linear-gradient(135deg, var(--warning), #fbbf24);
+}

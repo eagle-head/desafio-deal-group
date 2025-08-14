@@ -1,31 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './ColorSwatch.css';
 
 const ColorSwatch = ({ color, type, value, isActive, onClick }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const styles = {
-    swatch: {
-      width: '32px',
-      height: '32px',
-      borderRadius: '0.5rem',
-      cursor: 'pointer',
-      transition: 'var(--transition)',
-      border: isActive
-        ? '2px solid var(--text-primary)'
-        : '2px solid transparent',
-      background: color,
-      transform: isActive || isHovered ? 'scale(1.1)' : 'scale(1)',
-      boxShadow: isHovered ? 'var(--shadow-md)' : 'none',
-    },
+  const getSwatchClasses = () => {
+    const classes = ['color-swatch'];
+    if (isActive) classes.push('active');
+    return classes.join(' ');
   };
 
   return (
-    <div 
-      style={styles.swatch} 
-      className={`color-swatch ${isActive ? 'active' : ''}`}
+    <div
+      className={getSwatchClasses()}
+      style={{ background: color }}
       onClick={() => onClick(type, value)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     />
   );
 };
