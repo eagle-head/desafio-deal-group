@@ -51,7 +51,7 @@ function App() {
         timer.pauseTimer();
       }
     },
-    [game.gameStatus, timer.pauseTimer]
+    [game.gameStatus, timer, timer.pauseTimer]
   );
 
   return (

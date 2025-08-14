@@ -5,39 +5,6 @@
   animation: fadeIn 0.6s ease-out 0.4s both;
 }
 
-.controls__button {
+.controls .button {
   flex: 1;
-  padding: 0.875rem 1.5rem;
-  border: none;
-  border-radius: 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-}
-
-.controls__button--primary {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-  transform: translateY(0);
-}
-
-.controls__button--primary:hover {
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
-  transform: translateY(-2px);
-}
-
-.controls__button--secondary {
-  background: var(--surface);
-  color: var(--text-primary);
-  border: 2px solid var(--border-color);
-}
-
-.controls__button--secondary:hover {
-  background: var(--background);
-  color: var(--primary-color);
-  border-color: var(--primary-color);
 }

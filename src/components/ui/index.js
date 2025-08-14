@@ -1,3 +1,9 @@
+export { Button } from './Button/Button';
+export { 
+  BUTTON_VARIANTS,
+  BUTTON_SIZES,
+  BUTTON_TYPES
+} from './Button/constants';
 export { default as ScoreBoard } from './ScoreBoard/ScoreBoard';
 export { default as ScoreItem } from './ScoreItem/ScoreItem';
 export { default as Timer } from './Timer/Timer';

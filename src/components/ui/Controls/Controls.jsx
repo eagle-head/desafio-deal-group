@@ -1,14 +1,15 @@
+import { Button, BUTTON_VARIANTS } from '../';
 import './controls.css';
 
 function Controls({ onNewGame, onResetScores }) {
   return (
     <div className='controls'>
-      <button className='controls__button controls__button--primary' onClick={onNewGame}>
+      <Button variant={BUTTON_VARIANTS.PRIMARY} onClick={onNewGame}>
         Nova Partida
-      </button>
-      <button className='controls__button controls__button--secondary' onClick={onResetScores}>
+      </Button>
+      <Button variant={BUTTON_VARIANTS.SECONDARY} onClick={onResetScores}>
         Resetar Placar
-      </button>
+      </Button>
     </div>
   );
 }
