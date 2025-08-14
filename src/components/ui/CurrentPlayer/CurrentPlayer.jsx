@@ -1,5 +1,5 @@
 import React from 'react';
-import './CurrentPlayer.css';
+import './current-player.css';
 
 const CurrentPlayer = ({ player }) => {
   return (

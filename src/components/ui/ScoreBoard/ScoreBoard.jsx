@@ -1,6 +1,6 @@
 import React from 'react';
-import ScoreItem from './ScoreItem';
-import './ScoreBoard.css';
+import ScoreItem from '../ScoreItem/ScoreItem';
+import './score-board.css';
 
 const ScoreBoard = ({ scores }) => {
   return (

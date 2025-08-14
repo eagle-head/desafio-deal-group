@@ -1,5 +1,5 @@
 import React from 'react';
-import './Timer.css';
+import './timer.css';
 
 const Timer = ({ timeLeft, percentage }) => {
   const getProgressClass = () => {

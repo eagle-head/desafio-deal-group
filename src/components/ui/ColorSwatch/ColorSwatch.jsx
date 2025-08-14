@@ -1,5 +1,5 @@
 import React from 'react';
-import './ColorSwatch.css';
+import './color-swatch.css';
 
 const ColorSwatch = ({ color, type, value, isActive, onClick }) => {
   const getSwatchClasses = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import Cell from './Cell';
-import './GameBoard.css';
+import Cell from '../Cell/Cell';
+import './game-board.css';
 
 const GameBoard = ({
   board,

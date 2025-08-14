@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ColorSwatch from '../ui/ColorSwatch';
-import './ColorCustomizer.css';
+import ColorSwatch from '../../ui/ColorSwatch/ColorSwatch';
+import './color-customizer.css';
 
 const ColorCustomizer = ({ theme, onThemeChange }) => {
   const [isOpen, setIsOpen] = useState(false);

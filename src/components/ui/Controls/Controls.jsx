@@ -1,5 +1,5 @@
 import React from 'react';
-import './Controls.css';
+import './controls.css';
 
 const Controls = ({ onNewGame, onResetScores }) => {
   return (

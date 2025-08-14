@@ -1,5 +1,5 @@
 import React from 'react';
-import './StatusMessage.css';
+import './status-message.css';
 
 const StatusMessage = ({ gameStatus, winner }) => {
   if (gameStatus === 'playing') return null;

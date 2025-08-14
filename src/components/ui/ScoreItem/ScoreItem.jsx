@@ -1,5 +1,5 @@
 import React from 'react';
-import './ScoreItem.css';
+import './score-item.css';
 
 const ScoreItem = ({ label, value, player }) => {
   const getItemClasses = () => {

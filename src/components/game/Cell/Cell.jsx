@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Cell.css';
+import './cell.css';
 
 const Cell = ({ value, index, onClick, isWinner, disabled, currentPlayer }) => {
   const [hover, setHover] = useState(false);
