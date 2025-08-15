@@ -1,9 +1,5 @@
 import { useEffect, useCallback } from 'react';
-
-// Hooks
 import { useGame, useTimer, useTheme } from './hooks';
-
-// Components
 import {
   Header,
   ScoreBoard,
@@ -14,57 +10,54 @@ import {
   StatusMessage,
   GameBoard,
 } from './components';
-
-// Utils
 import { DEFAULT_TIMER_DURATION, getNextPlayer } from './utils';
 
-/**
- * Main application component for the Tic-Tac-Toe game
- * 
- * Orchestrates the entire game experience by managing game state, timer functionality,
- * theme customization, and coordinating between all child components. Handles game
- * logic, player moves, timeouts, and provides the complete user interface.
- * 
- * @returns {JSX.Element} The complete tic-tac-toe game interface
- * 
- * @example
- * // Render the main application
- * <App />
- */
 function App() {
   const game = useGame();
   const { theme, updateTheme } = useTheme();
+  const timer = useTimer(DEFAULT_TIMER_DURATION, null, {
+    precision: 100, // Update every 100ms for smooth visual updates
+    autoReset: false, // Don't auto-reset, let game logic handle it
+    useHighPrecision: true, // Use performance.now() for better accuracy
+  });
 
   const handleTimeout = useCallback(
     function () {
       if (game.gameStatus === 'playing') {
         game.setCurrentPlayer(getNextPlayer(game.currentPlayer));
+        timer.restartTimer(); // Restart timer after switching player
       }
     },
-    [game]
+    [game, timer]
   );
 
-  const timer = useTimer(DEFAULT_TIMER_DURATION, handleTimeout);
-
-  const handleCellClick = function (index) {
+  function handleCellClick(index) {
     if (game.makeMove(index)) {
-      timer.resetTimer();
+      timer.restartTimer(); // Use restartTimer for immediate restart
     }
-  };
+  }
 
-  const handleNewGame = function () {
+  function handleNewGame() {
     game.resetGame();
-    timer.resetTimer();
-  };
+    timer.restartTimer(); // Use restartTimer to immediately start the new game timer
+  }
 
-  useEffect(
-    function () {
-      if (game.gameStatus !== 'playing') {
-        timer.pauseTimer();
-      }
-    },
-    [game.gameStatus, timer, timer.pauseTimer]
-  );
+  useEffect(() => {
+    if (game.gameStatus !== 'playing') {
+      timer.pauseTimer();
+    }
+
+    if (game.gameStatus === 'playing' && !timer.isRunning) {
+      timer.startTimer();
+    }
+  }, [game.gameStatus, timer]);
+
+  // Handle timer expiration
+  useEffect(() => {
+    if (timer.isExpired && game.gameStatus === 'playing') {
+      handleTimeout();
+    }
+  }, [timer.isExpired, game.gameStatus, handleTimeout]);
 
   return (
     <div className='container'>

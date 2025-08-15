@@ -9,7 +9,10 @@ export const checkWinner = board => {
   for (const pattern of WINNING_PATTERNS) {
     const [a, b, c] = pattern;
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      return { winner: board[a], cells: pattern };
+      return {
+        winner: board[a],
+        cells: pattern,
+      };
     }
   }
 
@@ -60,13 +63,4 @@ export const getNextPlayer = currentPlayer => {
  */
 export const createEmptyBoard = () => {
   return createInitialBoard();
-};
-
-/**
- * Validates that the board is in a clean state
- * @param {Array} board - The board to validate
- * @returns {boolean} - True if board is completely empty
- */
-export const isBoardEmpty = board => {
-  return board.every(cell => cell === null);
 };

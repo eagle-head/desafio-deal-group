@@ -69,10 +69,6 @@ body {
     font-size: 3rem;
   }
 
-  .controls {
-    max-width: 400px;
-    margin: 0 auto 1.5rem;
-  }
 }
 
 @media (min-width: 768px) {
