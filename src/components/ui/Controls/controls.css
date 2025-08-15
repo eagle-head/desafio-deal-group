@@ -3,8 +3,27 @@
   gap: 1rem;
   margin-bottom: 1.5rem;
   animation: fadeIn 0.6s ease-out 0.4s both;
+  /* Add padding to prevent overlap with floating action button on mobile */
+  padding-bottom: 0.5rem;
 }
 
 .controls .button {
   flex: 1;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 767px) {
+  .controls {
+    /* Increase bottom margin on mobile to provide space for the FAB */
+    margin-bottom: 5rem;
+    /* Add some padding to ensure buttons don't get too close to viewport edge */
+    padding: 0 0.5rem 0.5rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .controls {
+    margin-bottom: 2rem;
+  }
 }

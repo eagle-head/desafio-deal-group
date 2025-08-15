@@ -6,6 +6,31 @@
   animation: slideUp 0.5s ease-out 0.5s both;
 }
 
+/* Mobile responsive positioning */
+@media (max-width: 767px) {
+  .color-customizer {
+    /* Move closer to edge and adjust bottom position */
+    bottom: 1rem;
+    right: 0.75rem;
+  }
+  
+  .color-customizer__fab {
+    /* Slightly smaller FAB on mobile for better touch target */
+    width: 52px;
+    height: 52px;
+    font-size: 1.375rem;
+  }
+  
+  .color-customizer__menu {
+    /* Adjust menu positioning for mobile */
+    bottom: 65px;
+    right: 0;
+    min-width: 180px;
+    /* Ensure menu doesn't go off-screen on mobile */
+    max-width: calc(100vw - 1.5rem);
+  }
+}
+
 .color-customizer__fab {
   width: 56px;
   height: 56px;
@@ -21,6 +46,17 @@
   transition: var(--transition);
   font-size: 1.5rem;
   transform: rotate(0deg);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  outline: none;
+}
+
+.color-customizer__fab:focus {
+  outline: none;
+}
+
+.color-customizer__fab:active {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
 }
 
 .color-customizer__fab.active {

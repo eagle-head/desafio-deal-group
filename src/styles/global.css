@@ -34,6 +34,21 @@ body {
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
+  /* Ensure container doesn't interfere with FAB positioning */
+  position: relative;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 639px) {
+  body {
+    /* Reduce padding on very small screens */
+    padding: 0.5rem;
+  }
+  
+  .container {
+    /* Add padding bottom to account for FAB on mobile */
+    padding-bottom: 1rem;
+  }
 }
 
 /* Responsive breakpoints */
