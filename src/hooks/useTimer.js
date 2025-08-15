@@ -65,31 +65,15 @@ const useTimer = (duration = 5, onTimeout, options = {}) => {
     }
 
     if (isActive) {
-      animationFrameRef.current = requestAnimationFrame(updateTimer);
-    }
-  }, [useHighPrecision, isActive]);
-
-  const updateTimerFallback = useCallback(() => {
-    const now = Date.now();
-    const elapsed = (now - startTimeRef.current) / 1000;
-    const remaining = Math.max(0, durationRef.current - elapsed);
-
-    setTimeLeft(Math.ceil(remaining));
-
-    if (remaining <= 0) {
-      setIsActive(false);
-      setIsFinished(true);
-
-      if (onTimeoutRef.current) {
-        onTimeoutRef.current();
+      if (useHighPrecision && typeof requestAnimationFrame !== 'undefined') {
+        animationFrameRef.current = requestAnimationFrame(updateTimer);
+      } else {
+        const nextUpdate = precision - ((now - startTimeRef.current) % precision);
+        timeoutRef.current = setTimeout(updateTimer, nextUpdate);
       }
-
-      return;
     }
+  }, [useHighPrecision, isActive, precision]);
 
-    const nextUpdate = precision - ((now - startTimeRef.current) % precision);
-    timeoutRef.current = setTimeout(updateTimerFallback, nextUpdate);
-  }, [precision]);
 
   const startTimer = useCallback(() => {
     if (isFinished) return;
@@ -100,9 +84,9 @@ const useTimer = (duration = 5, onTimeout, options = {}) => {
     if (useHighPrecision && typeof requestAnimationFrame !== 'undefined') {
       animationFrameRef.current = requestAnimationFrame(updateTimer);
     } else {
-      timeoutRef.current = setTimeout(updateTimerFallback, precision);
+      timeoutRef.current = setTimeout(updateTimer, precision);
     }
-  }, [isFinished, updateTimer, updateTimerFallback, precision, useHighPrecision]);
+  }, [isFinished, updateTimer, precision, useHighPrecision]);
 
   const restartTimer = useCallback(() => {
     resetTimer();
