@@ -1,103 +1,60 @@
-import { useState, useCallback } from 'react';
-import { checkWinner, isValidMove, makeMove as makeMoveOnBoard, getNextPlayer, createEmptyBoard } from '../utils/gameLogic';
-import { createInitialBoard, INITIAL_SCORES, PLAYERS, GAME_STATUS } from '../utils/constants';
-import { validateBoardState } from '../utils/helpers';
+import { useCallback } from 'react';
+import useGameState from './useGameState';
+import useGameScores from './useGameScores';
+import useGameMoves from './useGameMoves';
 
+/**
+ * Main game hook that orchestrates all game functionality
+ * Composes smaller hooks to provide a complete game management interface
+ * Maintains the same public API for backward compatibility
+ */
 const useGame = () => {
-  const [board, setBoard] = useState(() => createInitialBoard());
-  const [gameId, setGameId] = useState(() => Date.now()); // Add game ID to force re-renders
-  const [currentPlayer, setCurrentPlayer] = useState(PLAYERS.X);
-  const [scores, setScores] = useState(INITIAL_SCORES);
-  const [gameStatus, setGameStatus] = useState('playing');
-  const [winner, setWinner] = useState(null);
-  const [winningCells, setWinningCells] = useState([]);
+  // Initialize the separated hooks
+  const gameState = useGameState();
+  const gameScores = useGameScores();
+  const gameMoves = useGameMoves({
+    board: gameState.board,
+    currentPlayer: gameState.currentPlayer,
+    gameStatus: gameState.gameStatus,
+    updateBoard: gameState.updateBoard,
+    updateCurrentPlayer: gameState.updateCurrentPlayer,
+    updateGameStatus: gameState.updateGameStatus,
+    setGameWinner: gameState.setGameWinner,
+    updateScore: gameScores.updateScore,
+  });
 
-  const makeMove = index => {
-    if (!isValidMove(board, index, gameStatus)) return false;
-
-    const newBoard = makeMoveOnBoard(board, index, currentPlayer);
-    setBoard(newBoard);
-
-    const result = checkWinner(newBoard);
-    if (result) {
-      if (result.winner === 'draw') {
-        setGameStatus('draw');
-        setWinner('draw');
-        setScores(prev => ({ ...prev, draws: prev.draws + 1 }));
-      } else {
-        setGameStatus('win');
-        setWinner(result.winner);
-        setWinningCells(result.cells);
-        setScores(prev => ({
-          ...prev,
-          [result.winner]: prev[result.winner] + 1,
-        }));
-      }
-    } else {
-      setCurrentPlayer(getNextPlayer(currentPlayer));
-    }
-
-    return true;
-  };
-
+  /**
+   * Resets the entire game (both state and scores remain separate)
+   * Maintains the same behavior as the original implementation
+   */
   const resetGame = useCallback(() => {
-    console.log('🎮 Resetting game...');
-    
-    // Create a completely fresh board array using utility function
-    const newBoard = createEmptyBoard();
-    
-    // Validate the new board is truly empty
-    const validation = validateBoardState(newBoard, 'resetGame - new board creation');
-    if (!validation.isEmpty || !validation.hasValidCells) {
-      console.error('❌ New board is not properly empty:', validation);
-    } else {
-      console.log('✅ New board created successfully:', validation);
-    }
-    
-    // Create new game ID to force complete re-render
-    const newGameId = Date.now();
-    
-    // Batch all state updates to prevent race conditions
-    // Using functional updates to ensure we get the latest state
-    setBoard(() => newBoard);
-    setCurrentPlayer(() => PLAYERS.X);
-    setGameStatus(() => 'playing');
-    setWinner(() => null);
-    setWinningCells(() => []);
-    setGameId(() => newGameId);
-    
-    console.log('🔄 Game reset completed with ID:', newGameId);
-    
-    // Double-check that the board is actually empty after state update
-    setTimeout(() => {
-      setBoard(prevBoard => {
-        const postValidation = validateBoardState(prevBoard, 'resetGame - post state update');
-        if (!postValidation.isEmpty) {
-          console.warn('⚠️ Board not empty after reset, forcing empty state');
-          return createEmptyBoard();
-        }
-        console.log('✅ Board confirmed empty after reset');
-        return prevBoard;
-      });
-    }, 0);
-  }, []);
+    gameState.resetGameState();
+  }, [gameState]);
 
-  const resetScores = () => {
-    setScores(INITIAL_SCORES);
-  };
+  /**
+   * Resets only the scores
+   * Maintains the same behavior as the original implementation
+   */
+  const resetScores = useCallback(() => {
+    gameScores.resetScores();
+  }, [gameScores]);
 
+  // Return the same interface as the original useGame hook
   return {
-    board,
-    currentPlayer,
-    scores,
-    gameStatus,
-    winner,
-    winningCells,
-    gameId, // Add gameId to force re-renders
-    makeMove,
+    // Game state
+    board: gameState.board,
+    currentPlayer: gameState.currentPlayer,
+    scores: gameScores.scores,
+    gameStatus: gameState.gameStatus,
+    winner: gameState.winner,
+    winningCells: gameState.winningCells,
+    gameId: gameState.gameId,
+
+    // Game actions
+    makeMove: gameMoves.makeMove,
     resetGame,
     resetScores,
-    setCurrentPlayer,
+    setCurrentPlayer: gameState.setCurrentPlayer,
   };
 };
 

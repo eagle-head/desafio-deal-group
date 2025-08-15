@@ -1,3 +1,6 @@
 export { default as useGame } from './useGame';
+export { default as useGameState } from './useGameState';
+export { default as useGameScores } from './useGameScores';
+export { default as useGameMoves } from './useGameMoves';
 export { default as useTimer } from './useTimer';
 export { default as useTheme } from './useTheme';
