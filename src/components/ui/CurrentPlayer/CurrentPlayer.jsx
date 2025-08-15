@@ -1,18 +1,24 @@
-import { Badge, BADGE_VARIANTS, BADGE_SIZES } from '../';
+import { 
+  PlayerIndicator, 
+  PLAYER_INDICATOR_VARIANTS, 
+  PLAYER_INDICATOR_SIZES,
+  PLAYER_INDICATOR_STATES 
+} from '../';
 import './current-player.css';
 
 function CurrentPlayer({ player }) {
-  const getBadgeVariant = () => {
-    return player === 'X' ? BADGE_VARIANTS.PRIMARY : BADGE_VARIANTS.SECONDARY;
+  const getPlayerVariant = () => {
+    return player === 'X' ? PLAYER_INDICATOR_VARIANTS.PLAYER_X : PLAYER_INDICATOR_VARIANTS.PLAYER_O;
   };
 
   return (
     <div className='current-player'>
       <span className='current-player__label'>Vez do jogador:</span>
-      <Badge 
-        content={player} 
-        variant={getBadgeVariant()}
-        size={BADGE_SIZES.MEDIUM}
+      <PlayerIndicator 
+        player={player} 
+        variant={getPlayerVariant()}
+        size={PLAYER_INDICATOR_SIZES.MEDIUM}
+        state={PLAYER_INDICATOR_STATES.ACTIVE}
         animated={true}
         pulse={true}
       />

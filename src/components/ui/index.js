@@ -17,6 +17,13 @@ export {
   BADGE_SIZES,
   BADGE_POSITIONS
 } from './Badge/constants';
+export { PlayerIndicator } from './PlayerIndicator/PlayerIndicator';
+export { 
+  PLAYER_INDICATOR_VARIANTS,
+  PLAYER_INDICATOR_SIZES,
+  PLAYER_INDICATOR_STATES,
+  PLAYER_INDICATOR_TYPES
+} from './PlayerIndicator/constants';
 export { default as ScoreBoard } from './ScoreBoard/ScoreBoard';
 export { default as ScoreItem } from './ScoreItem/ScoreItem';
 export { default as Timer } from './Timer/Timer';

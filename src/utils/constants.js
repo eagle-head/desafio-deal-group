@@ -21,7 +21,11 @@ export const GAME_STATUS = {
   DRAW: 'draw',
 };
 
-export const INITIAL_BOARD = Array(9).fill(null);
+// Function to create a fresh empty board array
+export const createInitialBoard = () => Array(9).fill(null);
+
+// Export a getter for the initial board to ensure fresh instances
+export const INITIAL_BOARD = createInitialBoard();
 
 export const INITIAL_SCORES = {
   X: 0,

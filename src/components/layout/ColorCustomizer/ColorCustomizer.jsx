@@ -8,8 +8,8 @@ function ColorCustomizer({ theme, onThemeChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const primaryColors = ['#2563eb', '#dc2626', '#16a34a', '#7c3aed', '#ea580c'];
-  const accentColors = ['#60a5fa', '#f87171', '#4ade80', '#a78bfa', '#fb923c'];
+  const primaryColors = ['#2563eb', '#dc2626', '#7c3aed', '#ea580c'];
+  const accentColors = ['#60a5fa', '#f87171', '#a78bfa', '#fb923c'];
 
   useEffect(function () {
     const handleClickOutside = function (e) {

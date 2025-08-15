@@ -63,3 +63,41 @@ export const arraysEqual = (arr1, arr2) => {
   if (arr1.length !== arr2.length) return false;
   return arr1.every((val, index) => val === arr2[index]);
 };
+
+/**
+ * Debug utility to validate board state
+ * @param {Array} board - The board to validate
+ * @param {string} context - Context for debugging
+ */
+export const validateBoardState = (board, context = '') => {
+  const isEmpty = board.every(cell => cell === null);
+  const hasValidCells = board.every(cell => cell === null || cell === 'X' || cell === 'O');
+  
+  if (!hasValidCells) {
+    console.error(`Invalid board state in ${context}:`, board);
+  }
+  
+  return {
+    isEmpty,
+    hasValidCells,
+    cellCount: board.length,
+    filledCells: board.filter(cell => cell !== null).length
+  };
+};
+
+/**
+ * Creates a deep copy of the board to prevent reference issues
+ * @param {Array} board - The board to copy
+ * @returns {Array} - Deep copy of the board
+ */
+export const deepCopyBoard = (board) => {
+  return [...board.map(cell => cell)];
+};
+
+/**
+ * Utility to force React to re-render a component
+ * @returns {number} - Unique timestamp
+ */
+export const generateUniqueKey = () => {
+  return Date.now() + Math.random();
+};

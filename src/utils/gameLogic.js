@@ -1,4 +1,4 @@
-import { WINNING_PATTERNS } from './constants';
+import { WINNING_PATTERNS, createInitialBoard } from './constants';
 
 /**
  * Checks if there's a winner on the board
@@ -52,4 +52,21 @@ export const makeMove = (board, index, player) => {
  */
 export const getNextPlayer = currentPlayer => {
   return currentPlayer === 'X' ? 'O' : 'X';
+};
+
+/**
+ * Creates a completely fresh empty board
+ * @returns {Array} - New empty board array
+ */
+export const createEmptyBoard = () => {
+  return createInitialBoard();
+};
+
+/**
+ * Validates that the board is in a clean state
+ * @param {Array} board - The board to validate
+ * @returns {boolean} - True if board is completely empty
+ */
+export const isBoardEmpty = board => {
+  return board.every(cell => cell === null);
 };

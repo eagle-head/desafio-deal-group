@@ -5,16 +5,40 @@
   --accent-color: #60a5fa;
   --background: #f8fafc;
   --surface: #ffffff;
+  --text: #1e293b;
   --text-primary: #1e293b;
   --text-secondary: #64748b;
   --border-color: #e2e8f0;
-  --success: #10b981;
+  --success-color: #10b981;
+  --success-text: #ffffff;
   --danger: #ef4444;
+  --error-color: #ef4444;
+  --error-text: #ffffff;
   --warning: #f59e0b;
+  --warning-color: #f59e0b;
+  --warning-text: #ffffff;
+  --info-color: #3b82f6;
+  --info-text: #ffffff;
+  --primary-text: #ffffff;
+  --secondary-text: #ffffff;
+  
+  /* Additional variables for components */
+  --success: #10b981;
+  --background-muted: rgba(0, 0, 0, 0.1);
+  --background-muted-dark: rgba(255, 255, 255, 0.1);
+  --text-primary-dark: #f9fafb;
+  --text-secondary-dark: #94a3b8;
+  --border-color-dark: #334155;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Alpha variants for better UI effects */
+  --primary-color-alpha: rgba(37, 99, 235, 0.2);
+  --success-color-alpha: rgba(16, 185, 129, 0.2);
+  --background-secondary: rgba(0, 0, 0, 0.05);
+  --focus-color: #3b82f6;
 }
 
 /* Dark mode support */
@@ -22,8 +46,11 @@
   :root {
     --background: #0f172a;
     --surface: #1e293b;
+    --text: #f1f5f9;
     --text-primary: #f1f5f9;
     --text-secondary: #94a3b8;
     --border-color: #334155;
+    --background-secondary: rgba(255, 255, 255, 0.1);
+    --background-muted: rgba(255, 255, 255, 0.1);
   }
 }

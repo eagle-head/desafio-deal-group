@@ -44,7 +44,7 @@
   border-radius: 1rem;
   padding: 1.5rem;
   box-shadow: var(--shadow-lg);
-  min-width: 240px;
+  min-width: 200px;
   transform: scale(0);
   transform-origin: bottom right;
   transition: var(--transition);
@@ -57,7 +57,7 @@
 }
 
 .color-customizer__title {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   margin-bottom: 1rem;
   color: var(--text-secondary);
   text-transform: uppercase;

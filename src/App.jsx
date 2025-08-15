@@ -68,6 +68,7 @@ function App() {
           winningCells={game.winningCells}
           disabled={game.gameStatus !== 'playing'}
           currentPlayer={game.currentPlayer}
+          gameId={game.gameId}
         />
       </div>
       <Controls onNewGame={handleNewGame} onResetScores={game.resetScores} />
