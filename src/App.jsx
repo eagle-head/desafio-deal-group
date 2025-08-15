@@ -61,7 +61,7 @@ function App() {
       <Timer timeLeft={timer.timeLeft} percentage={timer.percentage} />
       <StatusMessage gameStatus={game.gameStatus} winner={game.winner} />
       <div>
-        <CurrentPlayer player={game.currentPlayer} />
+        {game.gameStatus === 'playing' && <CurrentPlayer player={game.currentPlayer} />}
         <GameBoard
           board={game.board}
           onCellClick={handleCellClick}
