@@ -38,12 +38,7 @@ function ColorCustomizer({ theme, onThemeChange }) {
           setIsHovered(false);
         }}
       >
-        <Icon 
-          icon={Settings} 
-          size={ICON_SIZES.MEDIUM} 
-          variant={ICON_VARIANTS.DEFAULT}
-          ariaLabel="Personalizar cores"
-        />
+        <Icon icon={Settings} size={ICON_SIZES.MEDIUM} variant={ICON_VARIANTS.DEFAULT} ariaLabel='Personalizar cores' />
       </button>
       <div className={`color-customizer__menu ${isOpen ? 'active' : ''}`}>
         <h3 className='color-customizer__title'>Personalizar Cores</h3>

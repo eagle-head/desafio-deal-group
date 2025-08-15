@@ -63,7 +63,6 @@
 
 .cell--empty.cell--hover {
   background: var(--surface);
-  border-color: var(--primary-color);
 }
 
 .cell__preview {
@@ -76,4 +75,13 @@
 
 .cell__preview--o {
   color: var(--accent-color);
+}
+
+/* Hover border color based on current player preview */
+.cell--empty.cell--hover:has(.cell__preview--x) {
+  border-color: var(--primary-color);
+}
+
+.cell--empty.cell--hover:has(.cell__preview--o) {
+  border-color: var(--accent-color);
 }
