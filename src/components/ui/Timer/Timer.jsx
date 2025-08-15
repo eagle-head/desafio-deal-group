@@ -37,7 +37,7 @@ function Timer({ timeLeft, percentage }) {
   return (
     <div className='timer-container'>
       <div className='timer-header'>
-        <span className='timer-label'>Tempo da Jogada</span>
+        <span className='timer-label'>Move Timer</span>
         <span className='timer-value'>{timeLeft}s</span>
       </div>
       <ProgressBar 

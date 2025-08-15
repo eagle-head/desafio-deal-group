@@ -60,12 +60,12 @@ function ColorCustomizer({ theme, onThemeChange }) {
           setIsHovered(false);
         }}
       >
-        <Icon icon={Settings} size={ICON_SIZES.MEDIUM} variant={ICON_VARIANTS.DEFAULT} ariaLabel='Personalizar cores' />
+        <Icon icon={Settings} size={ICON_SIZES.MEDIUM} variant={ICON_VARIANTS.DEFAULT} ariaLabel='Customize colors' />
       </button>
       <div className={`color-customizer__menu ${isOpen ? 'active' : ''}`}>
-        <h3 className='color-customizer__title'>Personalizar Cores</h3>
+        <h3 className='color-customizer__title'>Customize Colors</h3>
         <div className='color-customizer__option'>
-          <label className='color-customizer__label'>Tema Principal</label>
+          <label className='color-customizer__label'>Primary Theme</label>
           <div className='color-customizer__picker'>
             {primaryColors.map(function (color, index) {
               return (
@@ -82,7 +82,7 @@ function ColorCustomizer({ theme, onThemeChange }) {
           </div>
         </div>
         <div className='color-customizer__option'>
-          <label className='color-customizer__label'>Cor de Destaque</label>
+          <label className='color-customizer__label'>Accent Color</label>
           <div className='color-customizer__picker'>
             {accentColors.map(function (color, index) {
               return (

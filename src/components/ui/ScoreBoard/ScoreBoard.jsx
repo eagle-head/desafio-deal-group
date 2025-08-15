@@ -28,11 +28,11 @@ function ScoreBoard({ scores }) {
 
   return (
     <div className='score-board'>
-      <div className='score-board-title'>Placar Acumulado</div>
+      <div className='score-board-title'>Accumulated Score</div>
       <div className='scores'>
-        <ScoreItem label='Jogador X' value={scores.X} player='X' isLeading={isXLeading} />
-        <ScoreItem label='Empates' value={scores.draws} isLeading={isDrawsLeading} />
-        <ScoreItem label='Jogador O' value={scores.O} player='O' isLeading={isOLeading} />
+        <ScoreItem label='Player X' value={scores.X} player='X' isLeading={isXLeading} />
+        <ScoreItem label='Draws' value={scores.draws} isLeading={isDrawsLeading} />
+        <ScoreItem label='Player O' value={scores.O} player='O' isLeading={isOLeading} />
       </div>
     </div>
   );

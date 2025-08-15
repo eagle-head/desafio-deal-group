@@ -64,7 +64,7 @@ function StatusMessage({ gameStatus, winner }) {
         animated={true}
       />
       <span className="status-text">
-        {gameStatus === 'draw' ? 'Empate!' : `Jogador ${winner} venceu!`}
+        {gameStatus === 'draw' ? "It's a draw!" : `Player ${winner} wins!`}
       </span>
     </div>
   );

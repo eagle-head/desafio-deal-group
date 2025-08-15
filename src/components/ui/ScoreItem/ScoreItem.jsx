@@ -19,7 +19,7 @@ import './score-item.css';
  * @example
  * // Player score with leading indicator
  * <ScoreItem
- *   label="Jogador X"
+ *   label="Player X"
  *   value={5}
  *   player="X"
  *   isLeading={true}
@@ -28,7 +28,7 @@ import './score-item.css';
  * @example
  * // Draw score without player styling
  * <ScoreItem
- *   label="Empates"
+ *   label="Draws"
  *   value={2}
  *   isLeading={false}
  * />

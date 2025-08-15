@@ -23,10 +23,10 @@ function Controls({ onNewGame, onResetScores }) {
   return (
     <div className='controls'>
       <Button variant={BUTTON_VARIANTS.PRIMARY} onClick={onNewGame}>
-        Nova Partida
+        New Game
       </Button>
       <Button variant={BUTTON_VARIANTS.SECONDARY} onClick={onResetScores}>
-        Resetar Placar
+        Reset Scores
       </Button>
     </div>
   );
