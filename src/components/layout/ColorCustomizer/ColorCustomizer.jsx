@@ -4,6 +4,28 @@ import { Icon, ICON_SIZES, ICON_VARIANTS } from '../../ui';
 import ColorSwatch from '../../ui/ColorSwatch/ColorSwatch';
 import './color-customizer.css';
 
+/**
+ * Color customization component with floating action button interface
+ * 
+ * Provides a floating action button (FAB) that opens a color picker menu
+ * for customizing the application theme. Users can select different primary
+ * and accent colors from predefined palettes. Includes click-outside handling
+ * to close the menu and smooth animations.
+ * 
+ * @param {Object} props - The component props
+ * @param {Object} props.theme - Current theme object with color properties
+ * @param {string} props.theme.primary - Current primary theme color
+ * @param {string} props.theme.accent - Current accent theme color
+ * @param {function(string, string): void} props.onThemeChange - Callback function for theme changes, receives (type, color)
+ * 
+ * @returns {JSX.Element} Floating action button with expandable color picker menu
+ * 
+ * @example
+ * <ColorCustomizer
+ *   theme={{ primary: '#2563eb', accent: '#60a5fa' }}
+ *   onThemeChange={(type, color) => updateTheme(type, color)}
+ * />
+ */
 function ColorCustomizer({ theme, onThemeChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);

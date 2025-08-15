@@ -18,7 +18,19 @@ import {
 // Utils
 import { DEFAULT_TIMER_DURATION, getNextPlayer } from './utils';
 
-// Main App Component
+/**
+ * Main application component for the Tic-Tac-Toe game
+ * 
+ * Orchestrates the entire game experience by managing game state, timer functionality,
+ * theme customization, and coordinating between all child components. Handles game
+ * logic, player moves, timeouts, and provides the complete user interface.
+ * 
+ * @returns {JSX.Element} The complete tic-tac-toe game interface
+ * 
+ * @example
+ * // Render the main application
+ * <App />
+ */
 function App() {
   const game = useGame();
   const { theme, updateTheme } = useTheme();
