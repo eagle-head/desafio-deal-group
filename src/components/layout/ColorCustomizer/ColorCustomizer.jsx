@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Settings } from 'lucide-react';
+import { Icon, ICON_SIZES, ICON_VARIANTS } from '../../ui';
 import ColorSwatch from '../../ui/ColorSwatch/ColorSwatch';
 import './color-customizer.css';
 
@@ -37,7 +38,12 @@ function ColorCustomizer({ theme, onThemeChange }) {
           setIsHovered(false);
         }}
       >
-        <Settings size={24} />
+        <Icon 
+          icon={Settings} 
+          size={ICON_SIZES.MEDIUM} 
+          variant={ICON_VARIANTS.DEFAULT}
+          ariaLabel="Personalizar cores"
+        />
       </button>
       <div className={`color-customizer__menu ${isOpen ? 'active' : ''}`}>
         <h3 className='color-customizer__title'>Personalizar Cores</h3>

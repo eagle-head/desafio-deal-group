@@ -1,0 +1,107 @@
+/* Icon component styles */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+/* Size variants */
+.icon--small {
+  width: 16px;
+  height: 16px;
+}
+
+.icon--medium {
+  width: 24px;
+  height: 24px;
+}
+
+.icon--large {
+  width: 32px;
+  height: 32px;
+}
+
+.icon--extra-large {
+  width: 48px;
+  height: 48px;
+}
+
+/* Color variants */
+.icon--default {
+  color: var(--text-primary, #1f2937);
+}
+
+.icon--primary {
+  color: var(--color-primary, #2563eb);
+}
+
+.icon--secondary {
+  color: var(--text-secondary, #6b7280);
+}
+
+.icon--success {
+  color: var(--color-success, #16a34a);
+}
+
+.icon--warning {
+  color: var(--color-warning, #ea580c);
+}
+
+.icon--danger {
+  color: var(--color-danger, #dc2626);
+}
+
+.icon--muted {
+  color: var(--text-muted, #9ca3af);
+}
+
+/* Interactive state */
+.icon--interactive {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 2px;
+  margin: -2px;
+}
+
+.icon--interactive:hover {
+  background-color: var(--color-hover, rgba(0, 0, 0, 0.05));
+  transform: scale(1.05);
+}
+
+.icon--interactive:active {
+  transform: scale(0.95);
+}
+
+.icon--interactive:focus {
+  outline: 2px solid var(--color-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.icon--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .icon--default {
+    color: var(--text-primary-dark, #f9fafb);
+  }
+  
+  .icon--secondary {
+    color: var(--text-secondary-dark, #d1d5db);
+  }
+  
+  .icon--muted {
+    color: var(--text-muted-dark, #6b7280);
+  }
+  
+  .icon--interactive:hover {
+    background-color: var(--color-hover-dark, rgba(255, 255, 255, 0.1));
+  }
+}

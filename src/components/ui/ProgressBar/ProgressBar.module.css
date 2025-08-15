@@ -1,0 +1,183 @@
+/* ProgressBar Base Styles */
+.progressBar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.progressBar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.progressBar__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.progressBar__track {
+  position: relative;
+  background-color: var(--background-muted, rgba(0, 0, 0, 0.1));
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.progressBar__bar {
+  height: 100%;
+  border-radius: inherit;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.progressBar__content {
+  margin-top: 0.5rem;
+}
+
+/* Size Variants */
+.progressBar--small .progressBar__track {
+  height: 0.5rem;
+}
+
+.progressBar--small .progressBar__label {
+  font-size: 0.75rem;
+}
+
+.progressBar--medium .progressBar__track {
+  height: 0.75rem;
+}
+
+.progressBar--medium .progressBar__label {
+  font-size: 0.875rem;
+}
+
+.progressBar--large .progressBar__track {
+  height: 1rem;
+}
+
+.progressBar--large .progressBar__label {
+  font-size: 1rem;
+}
+
+/* Animated Progress Bar */
+.progressBar__bar--animated {
+  transition: width 0.3s ease-in-out;
+}
+
+/* Primary Variant */
+.progressBar__bar--primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.progressBar__bar--primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+/* Secondary Variant */
+.progressBar__bar--secondary {
+  background: linear-gradient(135deg, var(--text-secondary), var(--border-color));
+  box-shadow: 0 2px 8px rgba(107, 114, 128, 0.2);
+}
+
+/* Success Variant */
+.progressBar__bar--success {
+  background: linear-gradient(135deg, var(--success), #059669);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+/* Warning Variant */
+.progressBar__bar--warning {
+  background: linear-gradient(135deg, var(--warning), #d97706);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+}
+
+/* Error Variant */
+.progressBar__bar--error {
+  background: linear-gradient(135deg, var(--danger), #dc2626);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Pulse Animation for Active States */
+.progressBar__bar--animated:not(.progressBar__bar--secondary) {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+  .progressBar__track {
+    background-color: var(--background-muted-dark, rgba(255, 255, 255, 0.1));
+  }
+
+  .progressBar__label {
+    color: var(--text-primary-dark, #f9fafb);
+  }
+
+  .progressBar__bar--secondary {
+    background: linear-gradient(135deg, var(--text-secondary-dark), var(--border-color-dark));
+  }
+}
+
+/* Accessibility */
+.progressBar__track:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .progressBar__track {
+    border: 2px solid currentColor;
+  }
+  
+  .progressBar__bar {
+    border: 1px solid transparent;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .progressBar__bar--animated {
+    transition: none;
+    animation: none;
+  }
+  
+  .progressBar__bar::after {
+    animation: none;
+  }
+}

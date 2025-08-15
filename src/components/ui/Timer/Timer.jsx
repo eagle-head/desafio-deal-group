@@ -1,10 +1,11 @@
+import { ProgressBar, PROGRESS_BAR_VARIANTS } from '../';
 import './timer.css';
 
 function Timer({ timeLeft, percentage }) {
-  const getProgressClass = function () {
-    if (timeLeft <= 2) return 'danger';
-    if (timeLeft <= 3) return 'warning';
-    return '';
+  const getProgressVariant = function () {
+    if (timeLeft <= 2) return PROGRESS_BAR_VARIANTS.ERROR;
+    if (timeLeft <= 3) return PROGRESS_BAR_VARIANTS.WARNING;
+    return PROGRESS_BAR_VARIANTS.PRIMARY;
   };
 
   return (
@@ -13,9 +14,12 @@ function Timer({ timeLeft, percentage }) {
         <span className='timer-label'>Tempo da Jogada</span>
         <span className='timer-value'>{timeLeft}s</span>
       </div>
-      <div className='timer-bar'>
-        <div className={`timer-progress ${getProgressClass()}`} style={{ width: `${percentage}%` }}></div>
-      </div>
+      <ProgressBar 
+        value={percentage}
+        variant={getProgressVariant()}
+        animated={true}
+        showLabel={false}
+      />
     </div>
   );
 }

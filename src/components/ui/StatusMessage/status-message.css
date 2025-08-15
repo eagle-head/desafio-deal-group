@@ -8,6 +8,14 @@
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
   animation: slideDown 0.5s ease-out;
   background: linear-gradient(135deg, var(--success), #34d399);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.status-text {
+  font-weight: 600;
 }
 
 .status-message.draw {

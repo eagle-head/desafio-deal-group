@@ -20,6 +20,13 @@
   margin-bottom: 0.25rem;
 }
 
+.score-item__value-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 .score-item__value {
   font-size: 1.5rem;
   font-weight: 700;
