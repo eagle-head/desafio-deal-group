@@ -23,22 +23,22 @@ import { BADGE_VARIANTS, BADGE_SIZES, BADGE_POSITIONS } from './constants';
  * import { BADGE_VARIANTS, BADGE_SIZES, BADGE_POSITIONS } from './constants';
  *
  * // Simple badge
- * <Badge 
- *   content="NEW" 
- *   variant={BADGE_VARIANTS.SUCCESS} 
+ * <Badge
+ *   content="NEW"
+ *   variant={BADGE_VARIANTS.SUCCESS}
  *   size={BADGE_SIZES.MEDIUM}
  * />
  *
  * // Numeric badge with max value
- * <Badge 
- *   content={99} 
- *   max={99} 
+ * <Badge
+ *   content={99}
+ *   max={99}
  *   variant={BADGE_VARIANTS.ERROR}
  * />
  *
  * // Overlay badge with position
- * <Badge 
- *   content={5} 
+ * <Badge
+ *   content={5}
  *   position={BADGE_POSITIONS.TOP_RIGHT}
  *   variant={BADGE_VARIANTS.PRIMARY}
  * >
@@ -46,8 +46,8 @@ import { BADGE_VARIANTS, BADGE_SIZES, BADGE_POSITIONS } from './constants';
  * </Badge>
  *
  * // Dot indicator badge
- * <Badge 
- *   showDot={true} 
+ * <Badge
+ *   showDot={true}
  *   variant={BADGE_VARIANTS.SUCCESS}
  *   pulse={true}
  * >
@@ -73,7 +73,7 @@ const Badge = forwardRef(
     ref
   ) => {
     // Format numeric content with max value
-    const formatContent = (value) => {
+    const formatContent = value => {
       if (typeof value === 'number' && max && value > max) {
         return `${max}+`;
       }
@@ -87,21 +87,21 @@ const Badge = forwardRef(
     const getContentType = () => {
       if (showDot) return 'dot';
       if (!content) return null;
-      
+
       // Check if content is a React element (likely an icon)
       if (typeof content === 'object' && content !== null && 'type' in content) {
         return 'icon';
       }
-      
+
       // Check if content is a single character/short string
       if (typeof content === 'string' && content.length <= 2) {
         return 'single-char';
       }
-      
+
       if (typeof content === 'number') {
         return 'single-char';
       }
-      
+
       return 'text';
     };
 
@@ -126,7 +126,7 @@ const Badge = forwardRef(
         ref={ref}
         className={badgeClasses}
         data-content-type={contentType}
-        role="status"
+        role='status'
         aria-label={ariaLabel || (showDot ? 'Notification indicator' : `Badge: ${displayContent}`)}
         {...rest}
       >

@@ -23,6 +23,8 @@ export const BADGE_VARIANTS = Object.freeze({
   WARNING: 'warning',
   ERROR: 'error',
   INFO: 'info',
+  PLAYER_X: 'player-x',
+  PLAYER_O: 'player-o',
 });
 
 /**

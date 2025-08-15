@@ -4,3 +4,7 @@ export { default as useGameScores } from './useGameScores';
 export { default as useGameMoves } from './useGameMoves';
 export { default as useTimer } from './useTimer';
 export { default as useTheme } from './useTheme';
+export { default as useColorPalettes } from './useColorPalettes';
+export { default as useClickOutside } from './useClickOutside';
+export { default as useToggle } from './useToggle';
+export { default as useFloatingActionButton } from './useFloatingActionButton';

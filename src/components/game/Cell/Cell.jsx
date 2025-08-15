@@ -13,11 +13,11 @@ import './cell.css';
 
 /**
  * Interactive cell component for the tic-tac-toe game board.
- * 
+ *
  * Renders an individual game cell that can be clicked to make a move.
  * Provides visual feedback through hover effects, winner highlighting,
  * and preview of the current player's move before clicking.
- * 
+ *
  * @component
  * @param {Object} props - The component props
  * @param {CellValue} props.value - The current value of the cell ('X', 'O', or null for empty)
@@ -26,9 +26,9 @@ import './cell.css';
  * @param {boolean} [props.isWinner=false] - Whether this cell is part of a winning combination
  * @param {boolean} [props.disabled=false] - Whether the cell is disabled and cannot be clicked
  * @param {Player} [props.currentPlayer] - The current player whose turn it is, used for hover preview
- * 
+ *
  * @returns {JSX.Element} A clickable div element representing the game cell
- * 
+ *
  * @example
  * // Empty cell that can be clicked
  * <Cell
@@ -37,7 +37,7 @@ import './cell.css';
  *   onClick={(index) => makeMove(index)}
  *   currentPlayer="X"
  * />
- * 
+ *
  * @example
  * // Filled cell with 'X'
  * <Cell
@@ -46,7 +46,7 @@ import './cell.css';
  *   onClick={handleCellClick}
  *   disabled={true}
  * />
- * 
+ *
  * @example
  * // Winner cell with highlighting
  * <Cell

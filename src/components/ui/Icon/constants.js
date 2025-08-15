@@ -6,9 +6,9 @@
  * @enum {string}
  */
 export const ICON_SIZES = Object.freeze({
-  SMALL: 'small',      // 16px
-  MEDIUM: 'medium',    // 24px (default)
-  LARGE: 'large',      // 32px
+  SMALL: 'small', // 16px
+  MEDIUM: 'medium', // 24px (default)
+  LARGE: 'large', // 32px
   EXTRA_LARGE: 'extra-large', // 48px
 });
 

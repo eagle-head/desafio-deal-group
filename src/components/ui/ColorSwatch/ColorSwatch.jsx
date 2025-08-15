@@ -2,18 +2,18 @@ import './color-swatch.css';
 
 /**
  * Reusable color swatch component for color selection interfaces
- * 
+ *
  * Displays a clickable color preview that can be selected for theme customization.
  * Shows visual feedback for the currently active selection and handles click
  * events to notify parent components of color selection changes.
- * 
+ *
  * @param {Object} props - The component props
  * @param {string} props.color - CSS color value to display (hex, rgb, hsl, named colors)
  * @param {string} props.type - Category or type of color (e.g., 'primary', 'accent')
  * @param {string} props.value - Identifier for this color option
  * @param {boolean} props.isActive - Whether this swatch is currently selected
  * @param {function(string, string): void} props.onClick - Click handler that receives (type, value)
- * 
+ *
  * @returns {JSX.Element} A clickable color swatch element
  *
  * @example

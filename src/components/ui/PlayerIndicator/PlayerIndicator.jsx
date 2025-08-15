@@ -26,15 +26,15 @@ import {
  *
  * @example
  * // Basic player symbol indicator
- * <PlayerIndicator 
- *   player="X" 
+ * <PlayerIndicator
+ *   player="X"
  *   variant={PLAYER_INDICATOR_VARIANTS.PLAYER_X}
  *   state={PLAYER_INDICATOR_STATES.ACTIVE}
  *   pulse={true}
  * />
  *
  * // Player name with avatar
- * <PlayerIndicator 
+ * <PlayerIndicator
  *   player="Player 1"
  *   type={PLAYER_INDICATOR_TYPES.NAME}
  *   avatar="https://example.com/avatar.jpg"
@@ -43,7 +43,7 @@ import {
  * />
  *
  * // Mixed content with icon
- * <PlayerIndicator 
+ * <PlayerIndicator
  *   player="Alice"
  *   type={PLAYER_INDICATOR_TYPES.MIXED}
  *   icon="👑"
@@ -74,7 +74,7 @@ const PlayerIndicator = forwardRef(
     // Determine content type automatically if not specified
     const getAutoType = () => {
       if (type !== PLAYER_INDICATOR_TYPES.SYMBOL) return type;
-      
+
       if (typeof player === 'string') {
         // Single character or short string is likely a symbol
         if (player.length <= 2) {
@@ -83,13 +83,13 @@ const PlayerIndicator = forwardRef(
         // Longer string is likely a name
         return PLAYER_INDICATOR_TYPES.NAME;
       }
-      
+
       // React element or other content
       return PLAYER_INDICATOR_TYPES.SYMBOL;
     };
 
     const contentType = getAutoType();
-    
+
     // Generate component classes
     const playerIndicatorClasses = [
       styles.playerIndicator,
@@ -107,60 +107,34 @@ const PlayerIndicator = forwardRef(
     const renderContent = () => {
       switch (contentType) {
         case PLAYER_INDICATOR_TYPES.SYMBOL:
-          return (
-            <span className={styles.playerIndicator__symbol}>
-              {player}
-            </span>
-          );
-          
+          return <span className={styles.playerIndicator__symbol}>{player}</span>;
+
         case PLAYER_INDICATOR_TYPES.NAME:
-          return (
-            <span className={styles.playerIndicator__name}>
-              {player}
-            </span>
-          );
-          
+          return <span className={styles.playerIndicator__name}>{player}</span>;
+
         case PLAYER_INDICATOR_TYPES.AVATAR:
           return (
             <>
               {avatar && (
                 <div className={styles.playerIndicator__avatar}>
-                  {avatar.startsWith('http') ? (
-                    <img src={avatar} alt={`${player} avatar`} />
-                  ) : (
-                    <span>{avatar}</span>
-                  )}
+                  {avatar.startsWith('http') ? <img src={avatar} alt={`${player} avatar`} /> : <span>{avatar}</span>}
                 </div>
               )}
-              {showName && (
-                <span className={styles.playerIndicator__name}>
-                  {player}
-                </span>
-              )}
+              {showName && <span className={styles.playerIndicator__name}>{player}</span>}
             </>
           );
-          
+
         case PLAYER_INDICATOR_TYPES.MIXED:
           return (
             <>
-              {icon && (
-                <span className={styles.playerIndicator__icon}>
-                  {icon}
-                </span>
-              )}
+              {icon && <span className={styles.playerIndicator__icon}>{icon}</span>}
               {avatar && (
                 <div className={styles.playerIndicator__avatar}>
-                  {avatar.startsWith('http') ? (
-                    <img src={avatar} alt={`${player} avatar`} />
-                  ) : (
-                    <span>{avatar}</span>
-                  )}
+                  {avatar.startsWith('http') ? <img src={avatar} alt={`${player} avatar`} /> : <span>{avatar}</span>}
                 </div>
               )}
               {showSymbol && typeof player === 'string' && player.length <= 2 && (
-                <span className={styles.playerIndicator__symbol}>
-                  {player}
-                </span>
+                <span className={styles.playerIndicator__symbol}>{player}</span>
               )}
               {showName && (
                 <span className={styles.playerIndicator__name}>
@@ -169,7 +143,7 @@ const PlayerIndicator = forwardRef(
               )}
             </>
           );
-          
+
         default:
           return player;
       }
@@ -178,17 +152,18 @@ const PlayerIndicator = forwardRef(
     // Generate accessibility label
     const getAriaLabel = () => {
       if (ariaLabel) return ariaLabel;
-      
-      const stateText = state === PLAYER_INDICATOR_STATES.ACTIVE 
-        ? 'active player' 
-        : state === PLAYER_INDICATOR_STATES.WINNER 
-        ? 'winner' 
-        : state === PLAYER_INDICATOR_STATES.INACTIVE
-        ? 'inactive player'
-        : state === PLAYER_INDICATOR_STATES.WAITING
-        ? 'waiting player'
-        : 'player';
-      
+
+      const stateText =
+        state === PLAYER_INDICATOR_STATES.ACTIVE
+          ? 'active player'
+          : state === PLAYER_INDICATOR_STATES.WINNER
+            ? 'winner'
+            : state === PLAYER_INDICATOR_STATES.INACTIVE
+              ? 'inactive player'
+              : state === PLAYER_INDICATOR_STATES.WAITING
+                ? 'waiting player'
+                : 'player';
+
       return `${player} - ${stateText}`;
     };
 
@@ -199,7 +174,7 @@ const PlayerIndicator = forwardRef(
         data-player={player}
         data-state={state}
         data-type={contentType}
-        role="status"
+        role='status'
         aria-label={getAriaLabel()}
         tabIndex={state !== PLAYER_INDICATOR_STATES.INACTIVE ? 0 : -1}
         {...rest}

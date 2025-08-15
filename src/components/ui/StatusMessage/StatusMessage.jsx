@@ -47,7 +47,7 @@ function StatusMessage({ gameStatus, winner }) {
 
   function getBadgeVariant() {
     if (gameStatus === 'draw') return BADGE_VARIANTS.WARNING;
-    return winner === 'X' ? BADGE_VARIANTS.PRIMARY : BADGE_VARIANTS.SECONDARY;
+    return winner === 'X' ? BADGE_VARIANTS.PLAYER_X : BADGE_VARIANTS.PLAYER_O;
   }
 
   function getBadgeContent() {

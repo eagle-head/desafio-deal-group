@@ -19,9 +19,9 @@ import { PROGRESS_BAR_VARIANTS, PROGRESS_BAR_SIZES } from './constants';
  * import { ProgressBar } from './ProgressBar';
  * import { PROGRESS_BAR_VARIANTS, PROGRESS_BAR_SIZES } from './constants';
  *
- * <ProgressBar 
- *   value={75} 
- *   variant={PROGRESS_BAR_VARIANTS.SUCCESS} 
+ * <ProgressBar
+ *   value={75}
+ *   variant={PROGRESS_BAR_VARIANTS.SUCCESS}
  *   size={PROGRESS_BAR_SIZES.LARGE}
  *   showLabel={true}
  *   animated={true}
@@ -44,14 +44,8 @@ const ProgressBar = forwardRef(
   ) => {
     // Clamp value between 0 and 100
     const clampedValue = Math.min(Math.max(value, 0), 100);
-    
-    const containerClasses = [
-      styles.progressBar,
-      styles[`progressBar--${size}`],
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ');
+
+    const containerClasses = [styles.progressBar, styles[`progressBar--${size}`], className].filter(Boolean).join(' ');
 
     const barClasses = [
       styles.progressBar__bar,
@@ -70,24 +64,17 @@ const ProgressBar = forwardRef(
             <span className={styles.progressBar__label}>{displayLabel}</span>
           </div>
         )}
-        <div 
+        <div
           className={styles.progressBar__track}
-          role="progressbar"
+          role='progressbar'
           aria-valuenow={clampedValue}
           aria-valuemin={0}
           aria-valuemax={100}
           aria-label={displayLabel || `Progress: ${Math.round(clampedValue)}%`}
         >
-          <div
-            className={barClasses}
-            style={{ width: `${clampedValue}%` }}
-          />
+          <div className={barClasses} style={{ width: `${clampedValue}%` }} />
         </div>
-        {children && (
-          <div className={styles.progressBar__content}>
-            {children}
-          </div>
-        )}
+        {children && <div className={styles.progressBar__content}>{children}</div>}
       </div>
     );
   }

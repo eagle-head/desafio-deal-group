@@ -13,14 +13,14 @@
     bottom: 1rem;
     right: 0.75rem;
   }
-  
+
   .color-customizer__fab {
     /* Slightly smaller FAB on mobile for better touch target */
     width: 52px;
     height: 52px;
     font-size: 1.375rem;
   }
-  
+
   .color-customizer__menu {
     /* Adjust menu positioning for mobile */
     bottom: 65px;

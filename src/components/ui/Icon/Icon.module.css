@@ -92,15 +92,15 @@
   .icon--default {
     color: var(--text-primary-dark, #f9fafb);
   }
-  
+
   .icon--secondary {
     color: var(--text-secondary-dark, #d1d5db);
   }
-  
+
   .icon--muted {
     color: var(--text-muted-dark, #6b7280);
   }
-  
+
   .icon--interactive:hover {
     background-color: var(--color-hover-dark, rgba(255, 255, 255, 0.1));
   }

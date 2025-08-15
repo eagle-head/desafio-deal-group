@@ -12,7 +12,7 @@ const useGameScores = () => {
    * Updates scores based on game result
    * @param {string} winner - The winner ('X', 'O', or 'draw')
    */
-  const updateScore = useCallback((winner) => {
+  const updateScore = useCallback(winner => {
     setScores(prev => {
       if (winner === 'draw') {
         return { ...prev, draws: prev.draws + 1 };
@@ -42,11 +42,14 @@ const useGameScores = () => {
    * @param {string} player - Player ('X' or 'O')
    * @returns {number} Win rate as percentage (0-100)
    */
-  const getWinRate = useCallback((player) => {
-    const totalGames = getTotalGames();
-    if (totalGames === 0) return 0;
-    return (scores[player] / totalGames) * 100;
-  }, [scores, getTotalGames]);
+  const getWinRate = useCallback(
+    player => {
+      const totalGames = getTotalGames();
+      if (totalGames === 0) return 0;
+      return (scores[player] / totalGames) * 100;
+    },
+    [scores, getTotalGames]
+  );
 
   return {
     scores,

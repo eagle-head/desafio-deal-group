@@ -21,7 +21,7 @@
   --info-text: #ffffff;
   --primary-text: #ffffff;
   --secondary-text: #ffffff;
-  
+
   /* Additional variables for components */
   --success: #10b981;
   --background-muted: rgba(0, 0, 0, 0.1);
@@ -33,7 +33,7 @@
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* Alpha variants for better UI effects */
   --primary-color-alpha: rgba(37, 99, 235, 0.2);
   --success-color-alpha: rgba(16, 185, 129, 0.2);

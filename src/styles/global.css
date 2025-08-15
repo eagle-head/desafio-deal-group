@@ -44,7 +44,7 @@ body {
     /* Reduce padding on very small screens */
     padding: 0.5rem;
   }
-  
+
   .container {
     /* Add padding bottom to account for FAB on mobile */
     padding-bottom: 1rem;
@@ -68,7 +68,6 @@ body {
   .cell {
     font-size: 3rem;
   }
-
 }
 
 @media (min-width: 768px) {

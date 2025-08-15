@@ -187,7 +187,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -217,7 +218,7 @@
     font-size: 0.875rem;
     min-height: 2rem;
   }
-  
+
   .playerIndicator--medium {
     padding: 0.375rem 0.625rem;
     font-size: 0.8rem;
@@ -230,15 +231,15 @@
   .playerIndicator--animated {
     animation: none;
   }
-  
+
   .playerIndicator--pulse {
     animation: none;
   }
-  
+
   .playerIndicator {
     transition: none;
   }
-  
+
   .playerIndicator:hover {
     transform: none;
   }

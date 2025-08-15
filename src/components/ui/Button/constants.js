@@ -34,4 +34,3 @@ export const BUTTON_TYPES = Object.freeze({
   SUBMIT: 'submit',
   RESET: 'reset',
 });
-
