@@ -59,7 +59,7 @@ function App() {
       <Header />
       <ScoreBoard scores={game.scores} />
       <Timer timeLeft={timer.timeLeft} percentage={timer.percentage} />
-      <StatusMessage gameStatus={game.gameStatus} winner={getNextPlayer(game.currentPlayer)} />
+      <StatusMessage gameStatus={game.gameStatus} winner={game.winner} />
       <div>
         <CurrentPlayer player={game.currentPlayer} />
         <GameBoard

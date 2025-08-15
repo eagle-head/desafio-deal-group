@@ -7,6 +7,7 @@ const useGame = () => {
   const [currentPlayer, setCurrentPlayer] = useState(PLAYERS.X);
   const [scores, setScores] = useState(INITIAL_SCORES);
   const [gameStatus, setGameStatus] = useState('playing');
+  const [winner, setWinner] = useState(null);
   const [winningCells, setWinningCells] = useState([]);
 
   const makeMove = index => {
@@ -19,9 +20,11 @@ const useGame = () => {
     if (result) {
       if (result.winner === 'draw') {
         setGameStatus('draw');
+        setWinner('draw');
         setScores(prev => ({ ...prev, draws: prev.draws + 1 }));
       } else {
         setGameStatus('win');
+        setWinner(result.winner);
         setWinningCells(result.cells);
         setScores(prev => ({
           ...prev,
@@ -39,6 +42,7 @@ const useGame = () => {
     setBoard(INITIAL_BOARD);
     setCurrentPlayer(PLAYERS.X);
     setGameStatus('playing');
+    setWinner(null);
     setWinningCells([]);
   };
 
@@ -51,6 +55,7 @@ const useGame = () => {
     currentPlayer,
     scores,
     gameStatus,
+    winner,
     winningCells,
     makeMove,
     resetGame,
