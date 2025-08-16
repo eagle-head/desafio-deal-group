@@ -64,7 +64,7 @@ function ColorCustomizer({ theme, onThemeChange }) {
 function ColorPickerMenu({ className, theme, primaryColors, accentColors, onThemeChange }) {
   return (
     <div className={className}>
-      <h3 className='color-customizer__title'>Customize Colors</h3>
+      <h2 className='color-customizer__title'>Customize Colors</h2>
 
       <ColorSection
         label='Primary Theme'
