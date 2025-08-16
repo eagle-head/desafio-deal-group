@@ -74,7 +74,6 @@ const useTimer = (duration = 5, onTimeout, options = {}) => {
     }
   }, [useHighPrecision, isActive, precision]);
 
-
   const startTimer = useCallback(() => {
     if (isFinished) return;
 

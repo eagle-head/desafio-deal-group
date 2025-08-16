@@ -23,7 +23,7 @@ describe('useGameMoves', () => {
   beforeEach(() => {
     // Reset all mocks
     vi.clearAllMocks();
-    
+
     // Setup mock functions
     mockUpdateBoard = vi.fn();
     mockUpdateCurrentPlayer = vi.fn();
@@ -50,7 +50,7 @@ describe('useGameMoves', () => {
       newBoard[index] = player;
       return newBoard;
     });
-    gameLogic.getNextPlayer.mockImplementation(player => player === 'X' ? 'O' : 'X');
+    gameLogic.getNextPlayer.mockImplementation(player => (player === 'X' ? 'O' : 'X'));
     gameLogic.checkWinner.mockReturnValue(null);
   });
 
@@ -132,10 +132,7 @@ describe('useGameMoves', () => {
     });
 
     test('should update when dependencies change', () => {
-      const { result, rerender } = renderHook(
-        (props) => useGameMoves(props),
-        { initialProps: mockProps }
-      );
+      const { result, rerender } = renderHook(props => useGameMoves(props), { initialProps: mockProps });
 
       const initialCanMakeMove = result.current.canMakeMove;
 
@@ -152,9 +149,9 @@ describe('useGameMoves', () => {
     test('should handle winning condition for X player', () => {
       gameLogic.checkWinner.mockReturnValue({
         winner: PLAYERS.X,
-        cells: [0, 1, 2]
+        cells: [0, 1, 2],
       });
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       act(() => {
@@ -169,9 +166,9 @@ describe('useGameMoves', () => {
     test('should handle winning condition for O player', () => {
       gameLogic.checkWinner.mockReturnValue({
         winner: PLAYERS.O,
-        cells: [3, 4, 5]
+        cells: [3, 4, 5],
       });
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       act(() => {
@@ -186,9 +183,9 @@ describe('useGameMoves', () => {
     test('should handle draw condition', () => {
       gameLogic.checkWinner.mockReturnValue({
         winner: 'draw',
-        cells: []
+        cells: [],
       });
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       act(() => {
@@ -203,7 +200,7 @@ describe('useGameMoves', () => {
     test('should switch players when game continues', () => {
       gameLogic.checkWinner.mockReturnValue(null);
       gameLogic.getNextPlayer.mockReturnValue(PLAYERS.O);
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       act(() => {
@@ -218,7 +215,7 @@ describe('useGameMoves', () => {
       gameLogic.checkWinner.mockReturnValue(null);
       gameLogic.getNextPlayer.mockReturnValue(PLAYERS.X);
       const oPlayerProps = { ...mockProps, currentPlayer: PLAYERS.O };
-      
+
       const { result } = renderHook(() => useGameMoves(oPlayerProps));
 
       act(() => {
@@ -248,7 +245,7 @@ describe('useGameMoves', () => {
       gameLogic.isValidMove.mockReturnValue(true);
       const newBoard = ['X', null, null, null, null, null, null, null, null];
       gameLogic.makeMove.mockReturnValue(newBoard);
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       let moveResult;
@@ -263,7 +260,7 @@ describe('useGameMoves', () => {
       gameLogic.isValidMove.mockReturnValue(true);
       const newBoard = ['X', null, null, null, null, null, null, null, null];
       gameLogic.makeMove.mockReturnValue(newBoard);
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       act(() => {
@@ -279,7 +276,7 @@ describe('useGameMoves', () => {
       const newBoard = ['X', null, null, null, null, null, null, null, null];
       gameLogic.makeMove.mockReturnValue(newBoard);
       gameLogic.checkWinner.mockReturnValue(null);
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       act(() => {
@@ -295,7 +292,7 @@ describe('useGameMoves', () => {
       gameLogic.makeMove.mockReturnValue(newBoard);
       gameLogic.checkWinner.mockReturnValue(null);
       gameLogic.getNextPlayer.mockReturnValue(PLAYERS.O);
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       act(() => {
@@ -351,7 +348,7 @@ describe('useGameMoves', () => {
     test('should return correct available moves for partially filled board', () => {
       const partialBoard = ['X', null, 'O', null, 'X', null, null, null, null];
       const propsWithPartialBoard = { ...mockProps, board: partialBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithPartialBoard));
 
       const availableMoves = result.current.getAvailableMoves();
@@ -362,7 +359,7 @@ describe('useGameMoves', () => {
     test('should return empty array for full board', () => {
       const fullBoard = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
       const propsWithFullBoard = { ...mockProps, board: fullBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithFullBoard));
 
       const availableMoves = result.current.getAvailableMoves();
@@ -373,7 +370,7 @@ describe('useGameMoves', () => {
     test('should return single available move when board almost full', () => {
       const almostFullBoard = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', null];
       const propsWithAlmostFullBoard = { ...mockProps, board: almostFullBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithAlmostFullBoard));
 
       const availableMoves = result.current.getAvailableMoves();
@@ -392,10 +389,7 @@ describe('useGameMoves', () => {
     });
 
     test('should update when board dependency changes', () => {
-      const { result, rerender } = renderHook(
-        (props) => useGameMoves(props),
-        { initialProps: mockProps }
-      );
+      const { result, rerender } = renderHook(props => useGameMoves(props), { initialProps: mockProps });
 
       const initialResult = result.current.getAvailableMoves();
       expect(initialResult).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8]);
@@ -421,7 +415,7 @@ describe('useGameMoves', () => {
     test('should return false for partially filled board', () => {
       const partialBoard = ['X', null, 'O', null, 'X', null, null, null, null];
       const propsWithPartialBoard = { ...mockProps, board: partialBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithPartialBoard));
 
       const isFull = result.current.isBoardFull();
@@ -432,7 +426,7 @@ describe('useGameMoves', () => {
     test('should return true for completely full board', () => {
       const fullBoard = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
       const propsWithFullBoard = { ...mockProps, board: fullBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithFullBoard));
 
       const isFull = result.current.isBoardFull();
@@ -443,7 +437,7 @@ describe('useGameMoves', () => {
     test('should return false when board has one empty cell', () => {
       const almostFullBoard = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', null];
       const propsWithAlmostFullBoard = { ...mockProps, board: almostFullBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithAlmostFullBoard));
 
       const isFull = result.current.isBoardFull();
@@ -464,7 +458,7 @@ describe('useGameMoves', () => {
     test('should handle board with mixed X and O filled', () => {
       const mixedBoard = ['X', 'X', 'X', 'O', 'O', 'O', 'X', 'O', 'X'];
       const propsWithMixedBoard = { ...mockProps, board: mixedBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithMixedBoard));
 
       const isFull = result.current.isBoardFull();
@@ -485,7 +479,7 @@ describe('useGameMoves', () => {
     test('should return correct count for partially filled board', () => {
       const partialBoard = ['X', null, 'O', null, 'X', null, null, null, null];
       const propsWithPartialBoard = { ...mockProps, board: partialBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithPartialBoard));
 
       const moveCount = result.current.getMoveCount();
@@ -496,7 +490,7 @@ describe('useGameMoves', () => {
     test('should return 9 for completely full board', () => {
       const fullBoard = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
       const propsWithFullBoard = { ...mockProps, board: fullBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithFullBoard));
 
       const moveCount = result.current.getMoveCount();
@@ -507,7 +501,7 @@ describe('useGameMoves', () => {
     test('should return 8 when board has one empty cell', () => {
       const almostFullBoard = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', null];
       const propsWithAlmostFullBoard = { ...mockProps, board: almostFullBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithAlmostFullBoard));
 
       const moveCount = result.current.getMoveCount();
@@ -518,7 +512,7 @@ describe('useGameMoves', () => {
     test('should count only non-null values', () => {
       const testBoard = ['X', null, null, 'O', null, 'X', null, null, 'O'];
       const propsWithTestBoard = { ...mockProps, board: testBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithTestBoard));
 
       const moveCount = result.current.getMoveCount();
@@ -539,7 +533,7 @@ describe('useGameMoves', () => {
     test('should handle board with only X moves', () => {
       const xOnlyBoard = ['X', null, null, null, 'X', null, null, null, 'X'];
       const propsWithXOnlyBoard = { ...mockProps, board: xOnlyBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithXOnlyBoard));
 
       const moveCount = result.current.getMoveCount();
@@ -550,7 +544,7 @@ describe('useGameMoves', () => {
     test('should handle board with only O moves', () => {
       const oOnlyBoard = [null, 'O', null, 'O', null, null, null, 'O', null];
       const propsWithOOnlyBoard = { ...mockProps, board: oOnlyBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithOOnlyBoard));
 
       const moveCount = result.current.getMoveCount();
@@ -571,7 +565,7 @@ describe('useGameMoves', () => {
     test('should return false after first move', () => {
       const boardWithOneMove = ['X', null, null, null, null, null, null, null, null];
       const propsWithOneMove = { ...mockProps, board: boardWithOneMove };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithOneMove));
 
       const isFirst = result.current.isFirstMove();
@@ -582,7 +576,7 @@ describe('useGameMoves', () => {
     test('should return false for partially filled board', () => {
       const partialBoard = ['X', null, 'O', null, 'X', null, null, null, null];
       const propsWithPartialBoard = { ...mockProps, board: partialBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithPartialBoard));
 
       const isFirst = result.current.isFirstMove();
@@ -593,7 +587,7 @@ describe('useGameMoves', () => {
     test('should return false for full board', () => {
       const fullBoard = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
       const propsWithFullBoard = { ...mockProps, board: fullBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithFullBoard));
 
       const isFirst = result.current.isFirstMove();
@@ -612,10 +606,7 @@ describe('useGameMoves', () => {
     });
 
     test('should update correctly when dependencies change', () => {
-      const { result, rerender } = renderHook(
-        (props) => useGameMoves(props),
-        { initialProps: mockProps }
-      );
+      const { result, rerender } = renderHook(props => useGameMoves(props), { initialProps: mockProps });
 
       expect(result.current.isFirstMove()).toBe(true);
 
@@ -642,7 +633,7 @@ describe('useGameMoves', () => {
       gameLogic.isValidMove.mockReturnValue(true);
       gameLogic.checkWinner.mockReturnValue(null);
       gameLogic.getNextPlayer.mockReturnValue(PLAYERS.O);
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       // Initial state
@@ -666,9 +657,9 @@ describe('useGameMoves', () => {
       gameLogic.isValidMove.mockReturnValue(true);
       gameLogic.checkWinner.mockReturnValue({
         winner: PLAYERS.X,
-        cells: [0, 1, 2]
+        cells: [0, 1, 2],
       });
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       act(() => {
@@ -685,9 +676,9 @@ describe('useGameMoves', () => {
       gameLogic.isValidMove.mockReturnValue(true);
       gameLogic.checkWinner.mockReturnValue({
         winner: 'draw',
-        cells: []
+        cells: [],
       });
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       act(() => {
@@ -717,7 +708,7 @@ describe('useGameMoves', () => {
     test('should maintain consistency across all functions', () => {
       const partialBoard = ['X', 'O', null, 'X', null, 'O', null, null, null];
       const propsWithPartialBoard = { ...mockProps, board: partialBoard };
-      
+
       const { result } = renderHook(() => useGameMoves(propsWithPartialBoard));
 
       const moveCount = result.current.getMoveCount();
@@ -751,7 +742,7 @@ describe('useGameMoves', () => {
     test('should handle game over state moves', () => {
       gameLogic.isValidMove.mockReturnValue(false);
       const gameOverProps = { ...mockProps, gameStatus: GAME_STATUS.WIN };
-      
+
       const { result } = renderHook(() => useGameMoves(gameOverProps));
 
       let moveResult;
@@ -767,7 +758,7 @@ describe('useGameMoves', () => {
       gameLogic.isValidMove.mockReturnValue(true);
       gameLogic.checkWinner.mockReturnValue(null);
       gameLogic.getNextPlayer.mockReturnValue(PLAYERS.O);
-      
+
       const { result } = renderHook(() => useGameMoves(mockProps));
 
       act(() => {
@@ -783,7 +774,7 @@ describe('useGameMoves', () => {
       const oPlayerProps = { ...mockProps, currentPlayer: PLAYERS.O };
       gameLogic.isValidMove.mockReturnValue(true);
       gameLogic.getNextPlayer.mockReturnValue(PLAYERS.X);
-      
+
       const { result } = renderHook(() => useGameMoves(oPlayerProps));
 
       act(() => {
@@ -832,10 +823,7 @@ describe('useGameMoves', () => {
     });
 
     test('should update memoized functions when dependencies change', () => {
-      const { result, rerender } = renderHook(
-        (props) => useGameMoves(props),
-        { initialProps: mockProps }
-      );
+      const { result, rerender } = renderHook(props => useGameMoves(props), { initialProps: mockProps });
 
       const initialCanMakeMove = result.current.canMakeMove;
       const initialGetAvailableMoves = result.current.getAvailableMoves;
@@ -860,14 +848,7 @@ describe('useGameMoves', () => {
       const initialRenderCount = renderCount;
 
       // Using the functions shouldn't cause rerenders
-      const {
-        makeMove,
-        canMakeMove,
-        getAvailableMoves,
-        isBoardFull,
-        getMoveCount,
-        isFirstMove
-      } = result.current;
+      const { makeMove, canMakeMove, getAvailableMoves, isBoardFull, getMoveCount, isFirstMove } = result.current;
 
       // These shouldn't trigger additional renders
       expect(makeMove).toBeDefined();

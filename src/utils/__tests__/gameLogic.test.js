@@ -1,11 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import {
-  checkWinner,
-  isValidMove,
-  makeMove,
-  getNextPlayer,
-  createEmptyBoard,
-} from '../gameLogic';
+import { checkWinner, isValidMove, makeMove, getNextPlayer, createEmptyBoard } from '../gameLogic';
 
 describe('gameLogic', () => {
   describe('checkWinner', () => {
@@ -279,7 +273,7 @@ describe('gameLogic', () => {
       board = makeMove(board, 0, 'X');
       board = makeMove(board, 1, 'O');
       board = makeMove(board, 2, 'X');
-      
+
       expect(board[0]).toBe('X');
       expect(board[1]).toBe('O');
       expect(board[2]).toBe('X');
@@ -325,10 +319,10 @@ describe('gameLogic', () => {
       let currentPlayer = 'X';
       currentPlayer = getNextPlayer(currentPlayer); // Should be 'O'
       expect(currentPlayer).toBe('O');
-      
+
       currentPlayer = getNextPlayer(currentPlayer); // Should be 'X'
       expect(currentPlayer).toBe('X');
-      
+
       currentPlayer = getNextPlayer(currentPlayer); // Should be 'O'
       expect(currentPlayer).toBe('O');
     });
@@ -336,7 +330,7 @@ describe('gameLogic', () => {
     test('should handle string comparisons correctly', () => {
       const playerX = 'X';
       const playerO = 'O';
-      
+
       expect(getNextPlayer(playerX)).toBe('O');
       expect(getNextPlayer(playerO)).toBe('X');
     });
@@ -363,7 +357,7 @@ describe('gameLogic', () => {
     test('should create a new array instance each time', () => {
       const board1 = createEmptyBoard();
       const board2 = createEmptyBoard();
-      
+
       expect(board1).not.toBe(board2); // Different references
       expect(board1).toEqual(board2); // Same content
     });
@@ -371,7 +365,7 @@ describe('gameLogic', () => {
     test('should be modifiable without affecting future calls', () => {
       const board1 = createEmptyBoard();
       board1[0] = 'X';
-      
+
       const board2 = createEmptyBoard();
       expect(board2[0]).toBeNull();
     });

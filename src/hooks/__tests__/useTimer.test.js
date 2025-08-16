@@ -62,7 +62,7 @@ describe('useTimer', () => {
     cleanup();
     vi.clearAllMocks();
     vi.clearAllTimers();
-    
+
     // Restore original functions
     global.requestAnimationFrame = originalRAF;
     global.cancelAnimationFrame = originalCAF;
@@ -146,7 +146,6 @@ describe('useTimer', () => {
       expect(result.current).toBeDefined();
     });
 
-
     test('should handle partial options object', () => {
       const { result } = renderHook(() => useTimer(5, mockOnTimeout, { precision: 200 }));
 
@@ -226,7 +225,7 @@ describe('useTimer', () => {
       test('should set isActive to false when called', () => {
         // Set up RAF to actually store a frame ID
         mockRAF.mockReturnValue(123);
-        
+
         const { result } = renderHook(() => useTimer(5));
 
         act(() => {
@@ -241,7 +240,7 @@ describe('useTimer', () => {
       test('should work with fallback timing', () => {
         global.requestAnimationFrame = undefined;
         mockSetTimeout.mockReturnValue(456);
-        
+
         const { result } = renderHook(() => useTimer(5));
 
         act(() => {
@@ -301,7 +300,7 @@ describe('useTimer', () => {
 
     describe('restartTimer function', () => {
       test('should reset and start timer', () => {
-        mockSetTimeout.mockImplementation((callback) => {
+        mockSetTimeout.mockImplementation(callback => {
           callback();
           return 1;
         });
@@ -417,10 +416,9 @@ describe('useTimer', () => {
       const firstCallback = vi.fn();
       const secondCallback = vi.fn();
 
-      const { result, rerender } = renderHook(
-        ({ callback }) => useTimer(5, callback),
-        { initialProps: { callback: firstCallback } }
-      );
+      const { result, rerender } = renderHook(({ callback }) => useTimer(5, callback), {
+        initialProps: { callback: firstCallback },
+      });
 
       // Change the callback
       rerender({ callback: secondCallback });
@@ -432,10 +430,7 @@ describe('useTimer', () => {
 
   describe('duration updates', () => {
     test('should update duration when prop changes', () => {
-      const { result, rerender } = renderHook(
-        ({ duration }) => useTimer(duration),
-        { initialProps: { duration: 5 } }
-      );
+      const { result, rerender } = renderHook(({ duration }) => useTimer(duration), { initialProps: { duration: 5 } });
 
       expect(result.current.timeLeft).toBe(5);
 
@@ -446,10 +441,7 @@ describe('useTimer', () => {
     });
 
     test('should handle rapid duration changes', () => {
-      const { result, rerender } = renderHook(
-        ({ duration }) => useTimer(duration),
-        { initialProps: { duration: 5 } }
-      );
+      const { result, rerender } = renderHook(({ duration }) => useTimer(duration), { initialProps: { duration: 5 } });
 
       rerender({ duration: 10 });
       rerender({ duration: 3 });
@@ -466,14 +458,13 @@ describe('useTimer', () => {
       expect(result.current).toBeDefined();
     });
 
-
     test('should handle low precision timing', () => {
       const startTime = 1000;
       mockDateNow.mockReturnValue(startTime);
       let timeoutCallback = null;
-      
+
       global.requestAnimationFrame = undefined; // Force setTimeout fallback
-      global.setTimeout = vi.fn((callback) => {
+      global.setTimeout = vi.fn(callback => {
         timeoutCallback = callback;
         return 456;
       });
@@ -705,7 +696,6 @@ describe('useTimer', () => {
   });
 
   describe('timer internal logic coverage', () => {
-
     test('should handle updateTimer logic with simulated time progression', () => {
       // Test the internal timer update logic without actual time passing
       const { result } = renderHook(() => useTimer(5, mockOnTimeout));
@@ -713,7 +703,6 @@ describe('useTimer', () => {
       expect(result.current.timeLeft).toBe(5);
       expect(result.current.isRunning).toBe(true);
     });
-
 
     test('should handle isFinished state correctly', () => {
       const { result } = renderHook(() => useTimer(0, mockOnTimeout));
@@ -723,10 +712,9 @@ describe('useTimer', () => {
     });
 
     test('should handle duration ref updates', () => {
-      const { result, rerender } = renderHook(
-        ({ duration }) => useTimer(duration, mockOnTimeout),
-        { initialProps: { duration: 5 } }
-      );
+      const { result, rerender } = renderHook(({ duration }) => useTimer(duration, mockOnTimeout), {
+        initialProps: { duration: 5 },
+      });
 
       expect(result.current.timeLeft).toBe(5);
 
@@ -739,11 +727,10 @@ describe('useTimer', () => {
     test('should handle onTimeout ref updates', () => {
       const callback1 = vi.fn();
       const callback2 = vi.fn();
-      
-      const { result, rerender } = renderHook(
-        ({ callback }) => useTimer(5, callback),
-        { initialProps: { callback: callback1 } }
-      );
+
+      const { result, rerender } = renderHook(({ callback }) => useTimer(5, callback), {
+        initialProps: { callback: callback1 },
+      });
 
       expect(result.current).toBeDefined();
 
@@ -785,26 +772,25 @@ describe('useTimer', () => {
       expect(result.current).toBeDefined();
     });
 
-
     test('should execute updateTimer (line 47) with useHighPrecision true', () => {
       mockPerformanceNow.mockClear();
-      
+
       let rafCallback = null;
       let callCount = 0;
-      
-      global.requestAnimationFrame = vi.fn((callback) => {
+
+      global.requestAnimationFrame = vi.fn(callback => {
         rafCallback = callback;
         callCount++;
         return callCount;
       });
-      
+
       mockPerformanceNow.mockReturnValue(1000);
-      
+
       const { result, unmount } = renderHook(() => useTimer(5, mockOnTimeout, { useHighPrecision: true }));
-      
+
       // Make sure the timer is active and has been started
       expect(result.current.isRunning).toBe(true);
-      
+
       // Now force multiple executions of updateTimer via RAF
       act(() => {
         mockPerformanceNow.mockReturnValue(1500); // 0.5 seconds later
@@ -812,36 +798,36 @@ describe('useTimer', () => {
           rafCallback(); // Execute updateTimer line 47 with performance.now()
         }
       });
-      
+
       act(() => {
         mockPerformanceNow.mockReturnValue(2000); // 1 second later
         if (rafCallback) {
           rafCallback(); // Execute updateTimer line 47 with performance.now() again
         }
       });
-      
+
       expect(mockPerformanceNow).toHaveBeenCalledTimes(4); // Called multiple times including startTimer and updateTimer
       unmount();
     });
 
     test('should execute updateTimer (line 47) with useHighPrecision false via setTimeout', () => {
-      // This test verifies that when useHighPrecision is false, updateTimer still executes 
+      // This test verifies that when useHighPrecision is false, updateTimer still executes
       // but uses Date.now() path in line 47
       mockDateNow.mockClear();
-      
+
       let timeoutCallback = null;
-      
+
       // Force setTimeout usage by making requestAnimationFrame unavailable or useHighPrecision false
       global.requestAnimationFrame = vi.fn(() => 123); // Available but won't be used due to useHighPrecision: false
-      global.setTimeout = vi.fn((callback) => {
+      global.setTimeout = vi.fn(callback => {
         timeoutCallback = callback;
         return 456;
       });
-      
+
       mockDateNow.mockReturnValue(3000);
-      
+
       const { result: _result, unmount } = renderHook(() => useTimer(5, mockOnTimeout, { useHighPrecision: false }));
-      
+
       // Force execution of updateTimer via setTimeout
       act(() => {
         mockDateNow.mockReturnValue(3500); // 0.5 seconds later
@@ -849,10 +835,9 @@ describe('useTimer', () => {
           timeoutCallback(); // Execute updateTimer line 47 - should use Date.now() path
         }
       });
-      
+
       expect(mockDateNow).toHaveBeenCalled();
       unmount();
     });
-
   });
 });

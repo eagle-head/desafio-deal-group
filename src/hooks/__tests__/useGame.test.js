@@ -219,10 +219,10 @@ describe('useGame', () => {
       const { result, rerender } = renderHook(() => useGame());
 
       const initialResetGame = result.current.resetGame;
-      
+
       // Rerender without changing gameState dependency
       rerender();
-      
+
       expect(result.current.resetGame).toBe(initialResetGame);
     });
 
@@ -230,13 +230,13 @@ describe('useGame', () => {
       const { result, rerender } = renderHook(() => useGame());
 
       const initialResetGame = result.current.resetGame;
-      
+
       // Change gameState dependency
       const newGameState = { ...mockGameState, resetGameState: vi.fn() };
       useGameState.mockReturnValue(newGameState);
-      
+
       rerender();
-      
+
       expect(result.current.resetGame).not.toBe(initialResetGame);
     });
 
@@ -258,7 +258,7 @@ describe('useGame', () => {
       // Update the game state
       const updatedGameState = { ...mockGameState, board: ['X', null, null, null, null, null, null, null, null] };
       useGameState.mockReturnValue(updatedGameState);
-      
+
       act(() => {
         result.current.resetGame();
       });
@@ -299,10 +299,10 @@ describe('useGame', () => {
       const { result, rerender } = renderHook(() => useGame());
 
       const initialResetScores = result.current.resetScores;
-      
+
       // Rerender without changing gameScores dependency
       rerender();
-      
+
       expect(result.current.resetScores).toBe(initialResetScores);
     });
 
@@ -310,13 +310,13 @@ describe('useGame', () => {
       const { result, rerender } = renderHook(() => useGame());
 
       const initialResetScores = result.current.resetScores;
-      
+
       // Change gameScores dependency
       const newGameScores = { ...mockGameScores, resetScores: vi.fn() };
       useGameScores.mockReturnValue(newGameScores);
-      
+
       rerender();
-      
+
       expect(result.current.resetScores).not.toBe(initialResetScores);
     });
 
@@ -415,9 +415,17 @@ describe('useGame', () => {
 
       // Verify the exact structure matches lines 43-58
       const expectedProperties = [
-        'board', 'currentPlayer', 'scores', 'gameStatus', 'winner', 
-        'winningCells', 'gameId', 'makeMove', 'resetGame', 'resetScores', 
-        'setCurrentPlayer'
+        'board',
+        'currentPlayer',
+        'scores',
+        'gameStatus',
+        'winner',
+        'winningCells',
+        'gameId',
+        'makeMove',
+        'resetGame',
+        'resetScores',
+        'setCurrentPlayer',
       ];
 
       expectedProperties.forEach(prop => {
@@ -524,7 +532,7 @@ describe('useGame', () => {
       expect(result.current.resetGame).toEqual(expect.any(Function));
       expect(result.current.resetScores).toEqual(expect.any(Function));
       expect(result.current.setCurrentPlayer).toEqual(expect.any(Function));
-      
+
       // Winner can be null or string, so test separately
       expect(result.current.winner === null || typeof result.current.winner === 'string').toBe(true);
     });
@@ -576,7 +584,7 @@ describe('useGame', () => {
   describe('edge cases and error handling', () => {
     test('should handle missing or undefined hook returns gracefully', () => {
       useGameState.mockReturnValue(undefined);
-      
+
       expect(() => {
         renderHook(() => useGame());
       }).toThrow(); // This should throw because we're trying to access properties on undefined
@@ -677,26 +685,26 @@ describe('useGame', () => {
     test('should import useCallback from react', () => {
       // This is tested implicitly by the resetGame and resetScores functions being memoized
       const { result } = renderHook(() => useGame());
-      
+
       expect(typeof result.current.resetGame).toBe('function');
       expect(typeof result.current.resetScores).toBe('function');
     });
 
     test('should properly integrate with useGameState hook', () => {
       renderHook(() => useGame());
-      
+
       expect(useGameState).toHaveBeenCalledTimes(1);
     });
 
     test('should properly integrate with useGameScores hook', () => {
       renderHook(() => useGame());
-      
+
       expect(useGameScores).toHaveBeenCalledTimes(1);
     });
 
     test('should properly integrate with useGameMoves hook', () => {
       renderHook(() => useGame());
-      
+
       expect(useGameMoves).toHaveBeenCalledTimes(1);
     });
   });

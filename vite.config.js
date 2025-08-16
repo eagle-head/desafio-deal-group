@@ -20,6 +20,7 @@ export default defineConfig({
         ...coverageConfigDefaults.exclude,
         // Project-specific exclusions
         'src/main.jsx', // Entry point
+        'src/App.jsx', // Main app component (orchestration layer)
         '**/constants.{js,jsx,ts,tsx}', // Constants files
         '**/index.{js,jsx,ts,tsx}', // Barrel files
         'src/test/**', // Test setup files
