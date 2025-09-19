@@ -1,273 +1,273 @@
-# Jogo da Velha - Desafio Deal Group
+# Tic-Tac-Toe - Deal Group Challenge
 
-Um jogo da velha moderno e interativo desenvolvido com React, apresentando funcionalidades avançadas como temporizador, sistema de pontuação, personalização de cores e cobertura de testes de 100%.
+A modern and interactive tic-tac-toe game developed with React, featuring advanced functionalities such as timer, scoring system, color customization, and 100% test coverage.
 
-## 🚀 Comandos de Execução
+## 🚀 Execution Commands
 
-### Desenvolvimento
+### Development
 
 ```bash
-# Instalar dependências
+# Install dependencies
 npm install
 
-# Iniciar servidor de desenvolvimento
+# Start development server
 npm run dev
 
-# Visualizar build de produção
+# Preview production build
 npm run preview
 ```
 
 ### Build
 
 ```bash
-# Construir para produção
+# Build for production
 npm run build
 ```
 
-### Testes
+### Tests
 
 ```bash
-# Executar todos os testes
+# Run all tests
 npm test
 
-# Executar testes com interface visual
+# Run tests with visual interface
 npm run test:ui
 
-# Executar testes em modo watch
+# Run tests in watch mode
 npm run test:watch
 
-# Gerar relatório de cobertura
+# Generate coverage report
 npm run test:coverage
 
-# Gerar cobertura e abrir no navegador
+# Generate coverage and open in browser
 npm run test:coverage:open
 
-# Executar testes de cobertura em modo watch
+# Run coverage tests in watch mode
 npm run test:coverage:watch
 ```
 
-### Qualidade de Código
+### Code Quality
 
 ```bash
-# Verificar linting
+# Check linting
 npm run lint
 
-# Corrigir problemas de linting
+# Fix linting issues
 npm run lint:fix
 
-# Formatar código
+# Format code
 npm run format
 
-# Verificar formatação
+# Check formatting
 npm run format:check
 ```
 
-## 🏆 Qualidade e Performance - 100%
+## 🏆 Quality and Performance - 100%
 
-### Cobertura de Testes
+### Test Coverage
 
-Este projeto alcançou **100% de cobertura de testes** em todas as métricas:
+This project achieved **100% test coverage** across all metrics:
 
 - **Statements**: 100%
 - **Branches**: 100%
 - **Functions**: 100%
 - **Lines**: 100%
 
-Total de **1.245 testes** distribuídos em **29 arquivos de teste**, garantindo qualidade e confiabilidade do código.
+A total of **1,245 tests** distributed across **29 test files**, ensuring code quality and reliability.
 
 ### Lighthouse Report
 
-O projeto também obteve **pontuação máxima no Lighthouse**:
+The project also achieved **maximum Lighthouse score**:
 
-- **Acessibilidade**: 100% - Totalmente acessível para usuários com deficiências
-- **Melhores Práticas**: 100% - Seguindo os padrões modernos de desenvolvimento web
+- **Accessibility**: 100% - Fully accessible for users with disabilities
+- **Best Practices**: 100% - Following modern web development standards
 
-Demonstrando excelência tanto em qualidade de código quanto em experiência do usuário.
+Demonstrating excellence in both code quality and user experience.
 
-## 🎮 Regras do Jogo
+## 🎮 Game Rules
 
-### Como Jogar
+### How to Play
 
-1. **Objetivo**: Ser o primeiro a formar uma linha com 3 símbolos (horizontal, vertical ou diagonal)
-2. **Jogadores**: X e O se alternam a cada jogada
-3. **Temporizador**: Cada jogador tem 5 segundos para fazer sua jogada
-4. **Vitória**: Quem conseguir 3 símbolos em linha vence
-5. **Empate**: Se todas as casas forem preenchidas sem vencedor
+1. **Objective**: Be the first to form a line with 3 symbols (horizontal, vertical, or diagonal)
+2. **Players**: X and O alternate each turn
+3. **Timer**: Each player has 5 seconds to make their move
+4. **Victory**: Whoever gets 3 symbols in a row wins
+5. **Draw**: If all squares are filled without a winner
 
-### Sistema de Pontuação
+### Scoring System
 
-- **Vitória**: +1 ponto para o vencedor
-- **Empate**: Mantém a pontuação atual
-- **Histórico**: Pontuação acumulada durante a sessão
+- **Victory**: +1 point for the winner
+- **Draw**: Maintains current score
+- **History**: Accumulated score during the session
 
-### Funcionalidades Especiais
+### Special Features
 
-- **Timeout**: Se o tempo esgotar, a vez passa para o próximo jogador
-- **Reset**: Reinicia o jogo mantendo a pontuação
-- **Reset de Scores**: Zera toda a pontuação
-- **Personalização**: Customização de cores em tempo real
+- **Timeout**: If time runs out, the turn passes to the next player
+- **Reset**: Restarts the game keeping the score
+- **Reset Scores**: Clears all scores
+- **Customization**: Real-time color customization
 
-## 🧩 Componentes e Funcionalidades
+## 🧩 Components and Features
 
-### Componentes de Jogo
+### Game Components
 
-- **GameBoard**: Tabuleiro principal 3x3 com detecção de cliques
-- **Cell**: Célula individual do tabuleiro com estados visuais
-- **CurrentPlayer**: Indicador do jogador atual
-- **StatusMessage**: Mensagens de status do jogo (vitória, empate)
+- **GameBoard**: Main 3x3 board with click detection
+- **Cell**: Individual board cell with visual states
+- **CurrentPlayer**: Current player indicator
+- **StatusMessage**: Game status messages (victory, draw)
 
-### Componentes de Interface
+### Interface Components
 
-- **Timer**: Contador regressivo com barra de progresso visual
-- **ScoreBoard**: Painel de pontuação dos jogadores
-- **ScoreItem**: Item individual de pontuação
-- **Controls**: Botões de controle (novo jogo, reset scores)
-- **Header**: Cabeçalho da aplicação
+- **Timer**: Countdown timer with visual progress bar
+- **ScoreBoard**: Players' score panel
+- **ScoreItem**: Individual score item
+- **Controls**: Control buttons (new game, reset scores)
+- **Header**: Application header
 
-### Componentes de Layout
+### Layout Components
 
-- **ColorCustomizer**: Menu flutuante para personalização de cores
-- **ColorSwatch**: Seletor de cores individual
-- **ProgressBar**: Barra de progresso genérica
-- **Button**: Botão customizável com variantes
-- **Badge**: Elemento de badge para informações
-- **Icon**: Sistema de ícones unificado
-- **PlayerIndicator**: Indicador visual do jogador
+- **ColorCustomizer**: Floating menu for color customization
+- **ColorSwatch**: Individual color selector
+- **ProgressBar**: Generic progress bar
+- **Button**: Customizable button with variants
+- **Badge**: Badge element for information
+- **Icon**: Unified icon system
+- **PlayerIndicator**: Visual player indicator
 
-## 🏗️ Arquitetura do Projeto
+## 🏗️ Project Architecture
 
-### Estrutura de Pastas
+### Folder Structure
 
 ```
 src/
-├── components/           # Componentes React
-│   ├── game/            # Componentes específicos do jogo
-│   ├── ui/              # Componentes de interface reutilizáveis
-│   └── layout/          # Componentes de layout
-├── hooks/               # Hooks customizados
-├── utils/               # Utilitários e lógica de negócio
-├── styles/              # Estilos globais e temas
-└── test/                # Configuração de testes
+├── components/           # React components
+│   ├── game/            # Game-specific components
+│   ├── ui/              # Reusable interface components
+│   └── layout/          # Layout components
+├── hooks/               # Custom hooks
+├── utils/               # Utilities and business logic
+├── styles/              # Global styles and themes
+└── test/                # Test configuration
 ```
 
-### Hooks Customizados
+### Custom Hooks
 
 #### useGame
 
-Hook principal que orquestra toda a funcionalidade do jogo, compondo outros hooks menores:
+Main hook that orchestrates all game functionality, composing other smaller hooks:
 
-- **useGameState**: Gerencia estado do jogo (tabuleiro, jogador atual, status)
-- **useGameScores**: Controla sistema de pontuação
-- **useGameMoves**: Processa movimentos e validações
+- **useGameState**: Manages game state (board, current player, status)
+- **useGameScores**: Controls scoring system
+- **useGameMoves**: Processes moves and validations
 
 #### useTimer
 
-Temporizador de alta precisão com:
+High-precision timer with:
 
-- Atualização a cada 100ms para suavidade visual
-- Controles de start, pause, restart
-- Indicação de progresso percentual
-- Detecção de expiração
+- Update every 100ms for visual smoothness
+- Start, pause, restart controls
+- Percentage progress indication
+- Expiration detection
 
 #### useTheme
 
-Sistema de temas dinâmico:
+Dynamic theme system:
 
-- Personalização de cores primárias e acentos
-- Aplicação automática de variações de brilho
-- Persistência de preferências
+- Primary and accent color customization
+- Automatic brightness variation application
+- Preference persistence
 
-#### Hooks Utilitários
+#### Utility Hooks
 
-- **useToggle**: Gerencia estados booleanos
-- **useClickOutside**: Detecta cliques fora de elementos
-- **useFloatingActionButton**: Controla menu flutuante
-- **useColorPalettes**: Gera paletas de cores harmoniosas
+- **useToggle**: Manages boolean states
+- **useClickOutside**: Detects clicks outside elements
+- **useFloatingActionButton**: Controls floating menu
+- **useColorPalettes**: Generates harmonious color palettes
 
-### Utilitários
+### Utilities
 
 #### gameLogic.js
 
-Lógica pura do jogo:
+Pure game logic:
 
-- `checkWinner()`: Verifica condições de vitória ou empate
-- `isValidMove()`: Valida se movimento é permitido
-- `makeMove()`: Processa movimento no tabuleiro
-- `getNextPlayer()`: Alterna entre jogadores
+- `checkWinner()`: Checks victory or draw conditions
+- `isValidMove()`: Validates if move is allowed
+- `makeMove()`: Processes move on the board
+- `getNextPlayer()`: Alternates between players
 
 #### colorUtils.js
 
-Manipulação de cores:
+Color manipulation:
 
-- Ajuste de brilho e saturação
-- Conversões entre formatos
-- Geração de paletas harmoniosas
+- Brightness and saturation adjustment
+- Format conversions
+- Harmonious palette generation
 
 #### constants.js
 
-Configurações e constantes:
+Configurations and constants:
 
-- Padrões de vitória (8 combinações possíveis)
-- Estados do jogo
-- Configurações padrão (timer: 5 segundos)
+- Victory patterns (8 possible combinations)
+- Game states
+- Default settings (timer: 5 seconds)
 
-## 🎨 Sistema de Personalização
+## 🎨 Customization System
 
-### Menu Flutuante de Cores
+### Floating Color Menu
 
-- **Ativação**: Botão flutuante no canto da tela
-- **Cores Primárias**: Define cor principal da interface
-- **Cores de Acento**: Define cor secundária/destaque
-- **Aplicação Dinâmica**: Mudanças aplicadas em tempo real
-- **Variações Automáticas**: Gera tons mais escuros automaticamente
+- **Activation**: Floating button in screen corner
+- **Primary Colors**: Defines main interface color
+- **Accent Colors**: Defines secondary/highlight color
+- **Dynamic Application**: Changes applied in real-time
+- **Automatic Variations**: Generates darker tones automatically
 
-### Responsividade
+### Responsiveness
 
-- Design mobile-first
-- Adaptação automática para tablets e desktops
-- Componentes flexíveis e escaláveis
+- Mobile-first design
+- Automatic adaptation for tablets and desktops
+- Flexible and scalable components
 
-## 🧪 Estratégia de Testes
+## 🧪 Testing Strategy
 
-### Estrutura de Testes
+### Test Structure
 
-- **Testes Unitários**: Cada componente e hook testado isoladamente
-- **Testes de Integração**: Interações entre componentes
-- **Testes de Lógica**: Validação completa das regras de negócio
+- **Unit Tests**: Each component and hook tested in isolation
+- **Integration Tests**: Component interactions
+- **Logic Tests**: Complete business rules validation
 
-### Ferramentas
+### Tools
 
-- **Vitest**: Framework de testes rápido e moderno
-- **Testing Library**: Testes focados no comportamento do usuário
-- **jsdom**: Ambiente de DOM para testes
-- **Coverage V8**: Análise de cobertura nativa
+- **Vitest**: Fast and modern testing framework
+- **Testing Library**: User behavior-focused testing
+- **jsdom**: DOM environment for testing
+- **Coverage V8**: Native coverage analysis
 
-### Qualidade Garantida
+### Quality Assurance
 
-- Validação de props e estados
-- Simulação de interações do usuário
-- Testes de acessibilidade
-- Cobertura de casos extremos
+- Props and state validation
+- User interaction simulation
+- Accessibility testing
+- Edge case coverage
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 
-- **React 19**: Framework principal
-- **Vite**: Build tool e servidor de desenvolvimento
-- **Vitest**: Framework de testes
-- **ESLint + Prettier**: Qualidade e formatação de código
-- **CSS Modules**: Estilização modular
-- **Lucide React**: Biblioteca de ícones
+- **React 19**: Main framework
+- **Vite**: Build tool and development server
+- **Vitest**: Testing framework
+- **ESLint + Prettier**: Code quality and formatting
+- **CSS Modules**: Modular styling
+- **Lucide React**: Icon library
 
-## 🚀 Deploy
+## 🚀 Deployment
 
-O projeto está configurado para deploy em plataformas como:
+The project is configured for deployment on platforms such as:
 
 - Vercel
 - Netlify
 - GitHub Pages
 
-Basta conectar o repositório e a plataforma realizará o build automaticamente.
+Just connect the repository and the platform will automatically build.
 
 ---
 
-**Desenvolvido como parte do desafio técnico para Desenvolvedor Front-End Sênior**
+**Developed as part of the technical challenge for Senior Front-End Developer**
